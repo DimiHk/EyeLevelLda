@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "type_primary_font": "serif",
     "max_page_width": "90rem",
     "background_color": "#d7d7d7",
     "content_for_index": []
