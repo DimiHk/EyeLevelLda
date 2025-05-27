@@ -3,8 +3,6 @@
     {{ shop.name | link_to: routes.root_url }}
   </h2>
 
-  <h3 class="header__subtitle">Hello, {{ customer.first_name | default: 'Guest' }}!</h3>
-
   <div class="header__menu">
     {% for link in section.settings.menu.links %}
       {{ link.title | link_to: link.url }}
@@ -37,6 +35,33 @@
   header .header__icons {
     display: flex;
     gap: 1rem;
+  }
+
+  .header__title {
+    font-family: 'HerrVonMuellerhoff Pro', cursive;
+    position: relative;
+    padding: 0.5rem 1rem;
+  }
+
+  .header__title::before,
+  .header__title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--color-foreground);
+    border-radius: 50px;
+  }
+
+  .header__title::before {
+    top: 0;
+    background-color: #ffcc00;
+  }
+
+  .header__title::after {
+    bottom: 0;
+    background-color: #00aaff;
   }
 {% endstylesheet %}
 
