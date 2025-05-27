@@ -1,6 +1,14 @@
 <header>
   <h2 class="header__title">
-    {{ 'Eyelevel&nbsp;&nbspUn' | link_to: routes.root_url }}
+    <a href="{{ routes.root_url }}">
+      <img
+        src="{{ section.settings.image | image_url }}"
+        alt="{{ shop.name }}"
+        width="200"
+        loading="lazy"
+        height="200"
+      >
+    </a>
   </h2>
 
   <div class="header__menu">
@@ -37,34 +45,11 @@
     gap: 1rem;
   }
 
-  .header__title {
-    font-family: 'Herr Von Muellerhoff', cursive;
-    position: relative;
-    font-size: 2.5rem;
-    font-weight: 600;
-    font-style: normal;
-    padding: 0.25rem 0rem;
-  }
-
-  .header__title::before,
-  .header__title::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--color-foreground);
-    border-radius: 50px;
-  }
-
-  .header__title::before {
-    top: 0;
-    background-color: #dac54c;
-  }
-
-  .header__title::after {
-    bottom: 0;
-    background-color: #1092e0;
+  .logo-image {
+    height: 3rem;
+    width: auto;
+    display: block;
+    object-fit: contain;
   }
 {% endstylesheet %}
 
@@ -76,6 +61,11 @@
       "type": "link_list",
       "id": "menu",
       "label": "t:labels.menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.logo_image"
     }
   ]
 }
