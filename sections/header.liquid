@@ -1,6 +1,6 @@
 <header>
   <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
+    {{ 'Eyelevel&nbsp;&nbspUn' | link_to: routes.root_url }}
   </h2>
 
   <div class="header__menu">
@@ -38,9 +38,12 @@
   }
 
   .header__title {
-    font-family: 'HerrVonMuellerhoff Pro', cursive;
+    font-family: 'Herr Von Muellerhoff', cursive;
     position: relative;
-    padding: 0.5rem 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-style: normal;
+    padding: 0.25rem 0rem;
   }
 
   .header__title::before,
@@ -49,19 +52,19 @@
     position: absolute;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 4px;
     background: var(--color-foreground);
     border-radius: 50px;
   }
 
   .header__title::before {
     top: 0;
-    background-color: #ffcc00;
+    background-color: #dac54c;
   }
 
   .header__title::after {
     bottom: 0;
-    background-color: #00aaff;
+    background-color: #1092e0;
   }
 {% endstylesheet %}
 
