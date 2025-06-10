@@ -88,7 +88,7 @@
           "name": "t:general.row",
           "settings": {
             "layout_direction": "group--horizontal",
-            "alignment": "center",
+            "alignment": "start",
             "justify": "center",
             "padding": 0,
             "margin": 0,
@@ -96,7 +96,6 @@
             "gap_tablet": 12,
             "gap_desktop": 16,
             "wrap": true,
-            "min_height": 520,
             "background": "transparent"
           },
           "blocks": {

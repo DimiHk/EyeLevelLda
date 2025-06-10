@@ -1,0 +1,134 @@
+<form method="post" action="{{ localization.language.switch_url }}" id="LanguageForm">
+  <input type="hidden" name="language_code" id="SelectedLanguageCode">
+
+  <div class="language-picker__container" id="language-picker">
+    <button type="button" class="language-picker__button" id="toggle-language-dropdown">
+      {{ 'icon-world.svg' | inline_asset_content }}
+
+      {% for block in section.blocks %}
+        {% if block.type == 'text' %}
+          <span class="language-picker__label">{{ localization.language.endonym_name | capitalize }}</span>
+        {% endif %}
+      {% endfor %}
+
+      {{ 'icon-arrow-down.svg' | inline_asset_content }}
+    </button>
+
+    <ul class="language-picker__dropdown" id="language-dropdown">
+      {% for language in localization.available_languages %}
+        <li class="language-picker__dropdown-item" data-lang-code="{{ language.iso_code }}">
+          {{ language.endonym_name | capitalize }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</form>
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', () => {
+    function toggleLanguageDropdown() {
+      const dropdown = document.getElementById('language-dropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    const button = document.getElementById('toggle-language-dropdown');
+
+    if (button) {
+      button.addEventListener('click', toggleLanguageDropdown);
+    }
+
+    document.querySelectorAll('#language-dropdown .language-picker__dropdown-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        const langCode = item.getAttribute('data-lang-code');
+        document.getElementById('SelectedLanguageCode').value = langCode;
+        document.getElementById('LanguageForm').submit();
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      const dropdown = document.getElementById('language-dropdown');
+      const button = document.querySelector('.language-picker__button');
+      if (!button.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+  });
+{% endjavascript %}
+
+{% stylesheet %}
+  .language-picker__container {
+    position: relative;
+  }
+
+  .language-picker__button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .language-picker__button:hover {
+    border-color: #888;
+  }
+
+  .language-picker__dropdown {
+    position: absolute;
+    top: 100%;
+    left: -120px;
+    right: 0;
+    background: white;
+    border-radius: 6px;
+    list-style: none;
+    padding: 0;
+    display: none;
+    z-index: 1000;
+    min-width: 140px;
+  }
+
+  .language-picker__dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .language-picker__dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+
+  @media screen and (max-width: 600px) {
+    .language-picker__button {
+      padding: 6px 10px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Language Picker",
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Custom Label",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label_text",
+          "label": "Custom Label Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 1,
+  "presets": [
+    {
+      "name": "Language Picker",
+      "blocks": [
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

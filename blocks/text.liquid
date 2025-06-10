@@ -2,7 +2,7 @@
   Renders a highly customizable text block with responsive styling (mobile/tablet/desktop).
 {% enddoc %}
 
-<div
+<span
   class="text-block"
   style="
     --alignment-mobile: {{ block.settings.alignment_mobile }};
@@ -44,7 +44,7 @@
   {{ block.shopify_attributes }}
 >
   {{ block.settings.text }}
-</div>
+</span>
 
 {% stylesheet %}
   .text-block {

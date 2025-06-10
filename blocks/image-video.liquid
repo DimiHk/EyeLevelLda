@@ -1,24 +1,50 @@
-<div id="video" style="height: 'auto'">
-  <video
-    class="custom-video"
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; object-fit: fill;"
-    controls
-    autoplay
-    muted
-    loop
-    referrerpolicy="strict-origin-when-cross-origin"
+<div id="image__container" class="image__container">
+  <img
+    src="https://cdn.shopify.com/s/files/1/0920/9806/8863/files/portugal.jpg?v=1749588975"
+    alt="Portugal"
+    width="100%"
+    height="100%"
   >
-    <source src="{{ 'AlgarveVideo.mp4' | asset_url }}" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
 </div>
+
 {% stylesheet %}
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  .image__container {
+    position: relative;
+    width: 100%;
+    height: 90%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .image__container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: blur(10px);
+    opacity: 0.7;
+    transition: filter 0.6s ease, opacity 0.6s ease;
+    will-change: filter, opacity;
+  }
+
+  .image__container img.loaded {
+    filter: blur(0px);
+    opacity: 1;
   }
 {% endstylesheet %}
+
+{% javascript %}
+  document.addEventListener('DOMContentLoaded', function () {
+    const img = document.querySelector('#image__container img');
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => {
+        img.classList.add('loaded');
+      });
+    }
+  });
+{% endjavascript %}
 
 {% schema %}
 {
