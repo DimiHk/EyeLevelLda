@@ -13,10 +13,22 @@
   "sections": {
     "header": {
       "type": "header",
-      "settings": {
-        "menu": "",
-        "image": "shopify://shop_images/logo.png"
-      }
+      "blocks": {
+        "logo_Jm7LbC": {
+          "type": "logo",
+          "name": "t:general.logo_image",
+          "settings": {
+            "image": "shopify://shop_images/logo.png",
+            "logo_width_desktop": 200,
+            "logo_width_mobile": 150
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "logo_Jm7LbC"
+      ],
+      "settings": {}
     }
   },
   "order": [
