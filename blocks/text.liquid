@@ -1,28 +1,29 @@
 {% doc %}
-  Renders a text block.
-
-  @example
-  {% content_for 'block', type: 'text', id: 'text' %}
+  Renders a highly customizable text block.
 {% enddoc %}
 
 <div
-  class="text {{ block.settings.text_style }}"
-  style="--text-align: {{ block.settings.alignment }}"
+  class="text-block"
+  style="
+    text-align: {{ block.settings.alignment }};
+    font-size: {{ block.settings.font_size }};
+    font-weight: {{ block.settings.font_weight }};
+    color: {{ block.settings.color }};
+    line-height: {{ block.settings.line_height }};
+    letter-spacing: {{ block.settings.letter_spacing }};
+    text-transform: {{ block.settings.text_transform }};
+    padding: {{ block.settings.padding }};
+    margin: {{ block.settings.margin }};
+  "
   {{ block.shopify_attributes }}
 >
   {{ block.settings.text }}
 </div>
 
 {% stylesheet %}
-  .text {
-    text-align: var(--text-align);
-  }
-  .text--title {
-    font-size: 2rem;
-    font-weight: 700;
-  }
-  .text--subtitle {
-    font-size: 1.5rem;
+  .text-block {
+    width: 100%;
+    word-break: break-word;
   }
 {% endstylesheet %}
 
@@ -34,26 +35,102 @@
       "type": "text",
       "id": "text",
       "label": "t:labels.text",
-      "default": "Text"
-    },
-    {
-      "type": "select",
-      "id": "text_style",
-      "label": "t:labels.text_style",
-      "options": [
-        { "value": "text--title", "label": "t:options.text_style.title" },
-        { "value": "text--subtitle", "label": "t:options.text_style.subtitle" },
-        { "value": "text--normal", "label": "t:options.text_style.normal" }
-      ],
-      "default": "text--title"
+      "default": "Customizable text block"
     },
     {
       "type": "text_alignment",
       "id": "alignment",
       "label": "t:labels.alignment",
       "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "font_size",
+      "label": "Font size",
+      "default": "1rem",
+      "info": "Accepts units like rem, px, em, %, etc."
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "default": "400",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "200", "label": "Extra Light" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "color",
+      "label": "Text color",
+      "default": "#000000",
+      "info": "Supports hex or rgba(), e.g. rgba(0,0,0,0.8)"
+    },
+    {
+      "type": "text",
+      "id": "line_height",
+      "label": "Line height",
+      "default": "1.5",
+      "info": "e.g., 1.2, 1.5, 2, etc."
+    },
+    {
+      "type": "text",
+      "id": "letter_spacing",
+      "label": "Letter spacing",
+      "default": "normal",
+      "info": "e.g., 0.5px, normal, -0.2px"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text transform",
+      "default": "none",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "padding",
+      "label": "Padding",
+      "default": "0",
+      "info": "e.g., 1rem 2rem"
+    },
+    {
+      "type": "text",
+      "id": "margin",
+      "label": "Margin",
+      "default": "0",
+      "info": "e.g., 0 auto, 1rem 0"
     }
   ],
-  "presets": [{ "name": "t:general.text" }]
+  "presets": [
+    {
+      "name": "t:general.text",
+      "settings": {
+        "text": "Customizable text block",
+        "alignment": "left",
+        "font_size": "1rem",
+        "font_weight": "400",
+        "color": "#000000",
+        "line_height": "1.5",
+        "letter_spacing": "normal",
+        "text_transform": "none",
+        "padding": "0",
+        "margin": "0"
+      }
+    }
+  ]
 }
 {% endschema %}
