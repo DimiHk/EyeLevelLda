@@ -21,11 +21,19 @@
             "image": "shopify://shop_images/logo.png",
             "logo_width_desktop": 200,
             "logo_width_mobile": 150
-          }
+          },
+          "blocks": {}
+        },
+        "language_picker_B7Jh6x": {
+          "type": "language-picker",
+          "name": "t:general.language_picker",
+          "settings": {},
+          "blocks": {}
         }
       },
       "block_order": [
-        "logo_Jm7LbC"
+        "logo_Jm7LbC",
+        "language_picker_B7Jh6x"
       ],
       "settings": {}
     }
