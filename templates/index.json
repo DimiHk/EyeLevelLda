@@ -128,8 +128,8 @@
             "layout_direction": "group--horizontal",
             "alignment": "center",
             "justify": "center",
-            "padding": 0,
-            "margin": 40,
+            "padding": 30,
+            "margin": 0,
             "gap_mobile": 8,
             "gap_tablet": 12,
             "gap_desktop": 16,
@@ -148,13 +148,13 @@
                 "alignment_desktop": "center",
                 "font_size_mobile": "1rem",
                 "font_size_tablet": "1.25rem",
-                "font_size_desktop": "1.5rem",
+                "font_size_desktop": "2.25rem",
                 "font_weight_mobile": "400",
                 "font_weight_tablet": "400",
                 "font_weight_desktop": "400",
-                "color_mobile": "#000000",
-                "color_tablet": "#000000",
-                "color_desktop": "#000000",
+                "color_mobile": "rgba(0, 0, 0, 0.75)",
+                "color_tablet": "rgba(0, 0, 0, 0.75)",
+                "color_desktop": "rgba(0, 0, 0, 0.75)",
                 "line_height_mobile": "1.5",
                 "line_height_tablet": "1.5",
                 "line_height_desktop": "1.5",
@@ -195,12 +195,12 @@
             "layout_direction": "group--horizontal",
             "alignment": "center",
             "justify": "center",
-            "padding": 16,
+            "padding": 10,
             "margin": 0,
-            "gap_mobile": 8,
-            "gap_tablet": 12,
-            "gap_desktop": 16,
-            "wrap": true,
+            "gap_mobile": 10,
+            "gap_tablet": 30,
+            "gap_desktop": 40,
+            "wrap": false,
             "min_height": 80,
             "background": "rgba(0, 0, 0, 0.80)"
           },
@@ -213,9 +213,9 @@
                 "alignment_mobile": "center",
                 "alignment_tablet": "center",
                 "alignment_desktop": "center",
-                "font_size_mobile": "10px",
+                "font_size_mobile": "12px",
                 "font_size_tablet": "1rem",
-                "font_size_desktop": "1rem",
+                "font_size_desktop": "1.25rem",
                 "font_weight_mobile": "300",
                 "font_weight_tablet": "300",
                 "font_weight_desktop": "300",
@@ -240,17 +240,33 @@
               },
               "blocks": {}
             },
+            "stroke_KhpUFC": {
+              "type": "stroke",
+              "name": "Responsive Stroke",
+              "settings": {
+                "width_mobile": "0.5px",
+                "width_tablet": "0.5px",
+                "width_desktop": "0.5px",
+                "height_mobile": "40px",
+                "height_tablet": "40px",
+                "height_desktop": "40px",
+                "color_mobile": "#ffffff",
+                "color_tablet": "#ffffff",
+                "color_desktop": "#ffffff"
+              },
+              "blocks": {}
+            },
             "text_e6yMFU": {
               "type": "text",
               "name": "t:general.text",
               "settings": {
-                "text": "✅ Professional & Technical",
+                "text": "😎 Lifestyle & Performance",
                 "alignment_mobile": "center",
                 "alignment_tablet": "center",
                 "alignment_desktop": "center",
-                "font_size_mobile": "10px",
+                "font_size_mobile": "12px",
                 "font_size_tablet": "1rem",
-                "font_size_desktop": "1rem",
+                "font_size_desktop": "1.25rem",
                 "font_weight_mobile": "300",
                 "font_weight_tablet": "300",
                 "font_weight_desktop": "300",
@@ -272,6 +288,22 @@
                 "margin_mobile": "0",
                 "margin_tablet": "0",
                 "margin_desktop": "0"
+              },
+              "blocks": {}
+            },
+            "stroke_QypxXi": {
+              "type": "stroke",
+              "name": "Responsive Stroke",
+              "settings": {
+                "width_mobile": "0.5px",
+                "width_tablet": "0.5px",
+                "width_desktop": "0.5px",
+                "height_mobile": "40px",
+                "height_tablet": "40px",
+                "height_desktop": "40px",
+                "color_mobile": "#ffffff",
+                "color_tablet": "#ffffff",
+                "color_desktop": "#ffffff"
               },
               "blocks": {}
             },
@@ -283,9 +315,9 @@
                 "alignment_mobile": "center",
                 "alignment_tablet": "center",
                 "alignment_desktop": "center",
-                "font_size_mobile": "10px",
+                "font_size_mobile": "12px",
                 "font_size_tablet": "1rem",
-                "font_size_desktop": "1rem",
+                "font_size_desktop": "1.25rem",
                 "font_weight_mobile": "300",
                 "font_weight_tablet": "300",
                 "font_weight_desktop": "300",
@@ -313,13 +345,118 @@
           },
           "block_order": [
             "text_xXkX7a",
+            "stroke_KhpUFC",
             "text_e6yMFU",
+            "stroke_QypxXi",
             "text_QpLMpx"
           ]
         }
       },
       "block_order": [
         "bar_38ixJJ"
+      ],
+      "name": "t:general.custom_section",
+      "settings": {}
+    },
+    "custom_section_4gVwjp": {
+      "type": "custom-section",
+      "blocks": {
+        "bar_3DwbpP": {
+          "type": "bar",
+          "name": "t:general.row",
+          "settings": {
+            "layout_direction": "group--vertical",
+            "alignment": "center",
+            "justify": "center",
+            "padding": 40,
+            "margin": 0,
+            "gap_mobile": 8,
+            "gap_tablet": 12,
+            "gap_desktop": 16,
+            "wrap": true,
+            "min_height": 0,
+            "background": "#ffffff"
+          },
+          "blocks": {
+            "text_mkcxER": {
+              "type": "text",
+              "name": "t:general.text",
+              "settings": {
+                "text": "Diferences & Definition",
+                "alignment_mobile": "center",
+                "alignment_tablet": "center",
+                "alignment_desktop": "center",
+                "font_size_mobile": "1rem",
+                "font_size_tablet": "1.25rem",
+                "font_size_desktop": "2.25rem",
+                "font_weight_mobile": "400",
+                "font_weight_tablet": "400",
+                "font_weight_desktop": "400",
+                "color_mobile": "rgba(0, 0, 0, 0.75)",
+                "color_tablet": "rgba(0, 0, 0, 0.75)",
+                "color_desktop": "rgba(0, 0, 0, 0.75)",
+                "line_height_mobile": "1.5",
+                "line_height_tablet": "1.5",
+                "line_height_desktop": "1.5",
+                "letter_spacing_mobile": "normal",
+                "letter_spacing_tablet": "normal",
+                "letter_spacing_desktop": "normal",
+                "text_transform_mobile": "none",
+                "text_transform_tablet": "none",
+                "text_transform_desktop": "none",
+                "padding_mobile": "0",
+                "padding_tablet": "0",
+                "padding_desktop": "0",
+                "margin_mobile": "0",
+                "margin_tablet": "0",
+                "margin_desktop": "0"
+              },
+              "blocks": {}
+            },
+            "text_WJHFmm": {
+              "type": "text",
+              "name": "t:general.text",
+              "settings": {
+                "text": "Polarized sunglasses are specially designed to reduce glare from surfaces like water, roads, and glass. Unlike regular sunglasses, they have a special filter that blocks intense reflected light, making them perfect for driving, outdoor activities, or days at the beach.",
+                "alignment_mobile": "center",
+                "alignment_tablet": "center",
+                "alignment_desktop": "center",
+                "font_size_mobile": "1rem",
+                "font_size_tablet": "1.25rem",
+                "font_size_desktop": "1.625rem",
+                "font_weight_mobile": "300",
+                "font_weight_tablet": "300",
+                "font_weight_desktop": "300",
+                "color_mobile": "rgba(0, 0, 0, 0.70)",
+                "color_tablet": "rgba(0, 0, 0, 0.70)",
+                "color_desktop": "rgba(0, 0, 0, 0.70)",
+                "line_height_mobile": "44px",
+                "line_height_tablet": "44px",
+                "line_height_desktop": "44px",
+                "letter_spacing_mobile": "normal",
+                "letter_spacing_tablet": "normal",
+                "letter_spacing_desktop": "normal",
+                "text_transform_mobile": "none",
+                "text_transform_tablet": "none",
+                "text_transform_desktop": "none",
+                "padding_mobile": "0",
+                "padding_tablet": "0",
+                "padding_desktop": "0",
+                "margin_mobile": "0",
+                "margin_tablet": "0",
+                "margin_desktop": "0"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_mkcxER",
+            "text_WJHFmm"
+          ]
+        }
+      },
+      "block_order": [
+        "bar_3DwbpP"
       ],
       "name": "t:general.custom_section",
       "settings": {}
@@ -330,6 +467,7 @@
     "custom_section_XzfWzL",
     "custom_section_eNJe8L",
     "custom_section_fw38Wh",
-    "custom_section_J6KjYK"
+    "custom_section_J6KjYK",
+    "custom_section_4gVwjp"
   ]
 }
