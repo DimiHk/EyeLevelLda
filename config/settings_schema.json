@@ -79,33 +79,5 @@
         "default": 4
       }
     ]
-  },
-  {
-    "name": "t:general.logo",
-    "settings": [
-      {
-        "label": "t.labels.logo_size_desktop",
-        "type": "range",
-        "id": "logo_size_desktop",
-        "min": 50,
-        "max": 300,
-        "default": 100,
-        "step": 10
-      },
-      {
-        "label": "t.labels.logo_size_mobile",
-        "type": "range",
-        "id": "logo_size_mobile",
-        "min": 30,
-        "max": 150,
-        "default": 50,
-        "step": 10
-      },
-      {
-        "type": "image_picker",
-        "id": "logo_image",
-        "label": "t:labels.logo_image"
-      }
-    ]
   }
 ]
