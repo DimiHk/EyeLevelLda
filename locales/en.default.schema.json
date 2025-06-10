@@ -41,7 +41,8 @@
     "text": "Text",
     "theme": "Theme",
     "typography": "Typography",
-    "logo": "Logo"
+    "logo": "Logo",
+    "language_picker": "Language picker"
   },
   "labels": {
     "alignment": "Alignment",

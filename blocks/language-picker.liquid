@@ -1,0 +1,120 @@
+<form method="post" action="{{ localization.language.switch_url }}" id="LanguageForm">
+  <input type="hidden" name="language_code" id="SelectedLanguageCode">
+
+  <div class="language-picker">
+    <button type="button" class="language-button" onclick="toggleLanguageDropdown()">
+      <span class="icon-world">🌍</span>
+      <span class="language-label">{{ localization.language.endonym_name }}</span>
+      <span class="icon-arrow">⌄</span>
+    </button>
+
+    <ul class="language-dropdown" id="language-dropdown">
+      {% for language in localization.available_languages %}
+        <li data-lang-code="{{ language.iso_code }}">
+          {{ language.endonym_name }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</form>
+
+{% stylesheet %}
+  .language-picker {
+    position: relative;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+  }
+
+  .language-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 120px;
+    transition: border 0.2s;
+  }
+
+  .language-button:hover {
+    border-color: #888;
+  }
+
+  .icon-world {
+    font-size: 18px;
+  }
+
+  .icon-arrow {
+    margin-left: auto;
+    font-size: 10px;
+  }
+
+  .language-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 4px;
+    list-style: none;
+    padding: 0;
+    display: none;
+    z-index: 1000;
+  }
+
+  .language-dropdown li {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .language-dropdown li:hover {
+    background-color: #f0f0f0;
+  }
+
+  @media screen and (max-width: 600px) {
+    .language-button {
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+
+    .language-dropdown li {
+      font-size: 13px;
+    }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  function toggleLanguageDropdown() {
+    const dropdown = document.getElementById('language-dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+
+  document.querySelectorAll('#language-dropdown li').forEach((item) => {
+    item.addEventListener('click', () => {
+      const langCode = item.getAttribute('data-lang-code');
+      document.getElementById('SelectedLanguageCode').value = langCode;
+      document.getElementById('LanguageForm').submit();
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('language-dropdown');
+    const button = document.querySelector('.language-button');
+    if (!button.contains(e.target)) {
+      dropdown.style.display = 'none';
+    }
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:general.language_picker",
+  "presets": [{ "name": "t:general.language_picker" }],
+  "settings": []
+}
+{% endschema %}

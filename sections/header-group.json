@@ -21,8 +21,7 @@
             "image": "shopify://shop_images/logo.png",
             "logo_width_desktop": 200,
             "logo_width_mobile": 150
-          },
-          "blocks": {}
+          }
         }
       },
       "block_order": [
