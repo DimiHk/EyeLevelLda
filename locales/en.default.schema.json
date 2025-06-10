@@ -42,7 +42,8 @@
     "theme": "Theme",
     "typography": "Typography",
     "logo": "Logo",
-    "language_picker": "Language picker"
+    "language_picker": "Language picker",
+    "bar_group": "Bar Group"
   },
   "labels": {
     "alignment": "Alignment",
