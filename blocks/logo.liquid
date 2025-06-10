@@ -1,0 +1,64 @@
+<a href="{{ routes.root_url }}">
+  <img
+    class="header__logo"
+    src="{{ block.settings.image | image_url }}"
+    alt="{{ shop.name }}"
+    loading="lazy"
+    width="{{ block.settings.logo_width_desktop }}"
+    height="auto"
+    style="
+      --logo-width-desktop: {{ block.settings.logo_width_desktop }}px;
+      --logo-width-mobile: {{ block.settings.logo_width_mobile }}px;
+    "
+  >
+</a>
+
+{% stylesheet %}
+  *{
+    --logo-width-desktop: {{block.settings.logo_width_desktop }}px;
+    --logo-width-mobile: {{ block.settings.logo_width_mobile }}px;
+  }
+
+    .header__logo {
+      width: var(--logo-width-desktop);
+      height: auto;
+    }
+
+    @media (max-width: 749px) {
+      .header__logo {
+        width: var(--logo-width-mobile);
+      }
+    }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.logo",
+  "presets": [{ "name": "t:general.logo_image" }],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.logo_image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_desktop",
+      "label": "Desktop logo width (px)",
+      "min": 50,
+      "max": 600,
+      "step": 10,
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "label": "Mobile logo width (px)",
+      "min": 30,
+      "max": 400,
+      "step": 10,
+      "default": 150
+    }
+  ]
+}
+{% endschema %}

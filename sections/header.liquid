@@ -1,72 +1,27 @@
-<header>
-  <h2 class="header__title">
-    <a href="{{ routes.root_url }}">
-      <img
-        src="{{ section.settings.image | image_url }}"
-        alt="{{ shop.name }}"
-        width="200"
-        loading="lazy"
-        height="200"
-      >
-    </a>
-  </h2>
-
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
+<header class="header__container">
+  {% for block in section.blocks %}
+    {% render block %}
+  {% endfor %}
 </header>
 
 {% stylesheet %}
-  header {
-    height: 5rem;
+  .header__container {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: space-between;
-  }
-  header a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
-  }
-  header svg {
-    width: 2rem;
-  }
-  header .header__menu,
-  header .header__icons {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .logo-image {
-    height: 3rem;
-    width: auto;
-    display: block;
-    object-fit: contain;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    background-color: var(--color-background, #fff);
   }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:general.header",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "t:labels.logo_image"
-    }
-  ]
+  "blocks": [{ "type": "@theme" }],
+  "presets": [{ "name": "t:general.header" }],
+  "settings": []
 }
 {% endschema %}
