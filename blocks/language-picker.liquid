@@ -4,13 +4,7 @@
   <div class="language-picker__container" id="language-picker">
     <button type="button" class="language-picker__button" id="toggle-language-dropdown">
       {{ 'icon-world.svg' | inline_asset_content }}
-
-      {% for block in section.blocks %}
-        {% if block.type == 'text' %}
-          <span class="language-picker__label">{{ localization.language.endonym_name | capitalize }}</span>
-        {% endif %}
-      {% endfor %}
-
+      <span class="language-picker__label">{{ localization.language.endonym_name | capitalize }}</span>
       {{ 'icon-arrow-down.svg' | inline_asset_content }}
     </button>
 
@@ -67,6 +61,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
+    font-weight: var(--font-light);
   }
 
   .language-picker__button:hover {
@@ -90,6 +85,7 @@
   .language-picker__dropdown-item {
     padding: 10px;
     cursor: pointer;
+    font-weight: var(--font-light);
   }
 
   .language-picker__dropdown-item:hover {
@@ -106,28 +102,9 @@
 {% schema %}
 {
   "name": "Language Picker",
-  "blocks": [
-    {
-      "type": "text",
-      "name": "Custom Label",
-      "settings": [
-        {
-          "type": "text",
-          "id": "label_text",
-          "label": "Custom Label Text"
-        }
-      ]
-    }
-  ],
-  "max_blocks": 1,
   "presets": [
     {
-      "name": "Language Picker",
-      "blocks": [
-        {
-          "type": "text"
-        }
-      ]
+      "name": "Language Picker"
     }
   ]
 }
