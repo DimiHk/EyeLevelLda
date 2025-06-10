@@ -1,0 +1,114 @@
+{% comment %}
+  Renders a customizable horizontal or vertical stroke with responsive width, height, and color.
+{% endcomment %}
+
+<div
+  class="stroke-block"
+  style="
+    --stroke-width-mobile: {{ block.settings.width_mobile }};
+    --stroke-width-tablet: {{ block.settings.width_tablet }};
+    --stroke-width-desktop: {{ block.settings.width_desktop }};
+
+    --stroke-height-mobile: {{ block.settings.height_mobile }};
+    --stroke-height-tablet: {{ block.settings.height_tablet }};
+    --stroke-height-desktop: {{ block.settings.height_desktop }};
+
+    --stroke-color-mobile: {{ block.settings.color_mobile }};
+    --stroke-color-tablet: {{ block.settings.color_tablet }};
+    --stroke-color-desktop: {{ block.settings.color_desktop }};
+  "
+  {{ block.shopify_attributes }}
+></div>
+
+{% stylesheet %}
+  .stroke-block {
+    background-color: var(--stroke-color-mobile);
+    width: var(--stroke-width-mobile);
+    height: var(--stroke-height-mobile);
+  }
+
+  @media screen and (min-width: 768px) {
+    .stroke-block {
+      background-color: var(--stroke-color-tablet);
+      width: var(--stroke-width-tablet);
+      height: var(--stroke-height-tablet);
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .stroke-block {
+      background-color: var(--stroke-color-desktop);
+      width: var(--stroke-width-desktop);
+      height: var(--stroke-height-desktop);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Stroke",
+  "settings": [
+    {
+      "type": "text",
+      "id": "width_mobile",
+      "label": "Width (Mobile)",
+      "default": "100%",
+      "info": "e.g. 100%, 200px, 1rem"
+    },
+    {
+      "type": "text",
+      "id": "width_tablet",
+      "label": "Width (Tablet)",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "width_desktop",
+      "label": "Width (Desktop)",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "height_mobile",
+      "label": "Height (Mobile)",
+      "default": "2px",
+      "info": "e.g. 2px, 0.2rem, 1em"
+    },
+    {
+      "type": "text",
+      "id": "height_tablet",
+      "label": "Height (Tablet)",
+      "default": "2px"
+    },
+    {
+      "type": "text",
+      "id": "height_desktop",
+      "label": "Height (Desktop)",
+      "default": "2px"
+    },
+    {
+      "type": "color",
+      "id": "color_mobile",
+      "label": "Color (Mobile)",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "color_tablet",
+      "label": "Color (Tablet)",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "color_desktop",
+      "label": "Color (Desktop)",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Responsive Stroke"
+    }
+  ]
+}
+{% endschema %}
