@@ -12,7 +12,77 @@
     "main": {
       "type": "page",
       "settings": {}
+    },
+    "custom_section_XzfWzL": {
+      "type": "custom-section",
+      "blocks": {
+        "bar_GTdRby": {
+          "type": "bar",
+          "name": "t:general.row",
+          "settings": {
+            "layout_direction": "group--horizontal",
+            "alignment": "center",
+            "justify": "center",
+            "padding": 16,
+            "margin": 0,
+            "gap_mobile": 8,
+            "gap_tablet": 12,
+            "gap_desktop": 16,
+            "wrap": true,
+            "min_height": 30,
+            "background": "rgba(0, 0, 0, 0.80)"
+          },
+          "blocks": {
+            "text_cxEqRw": {
+              "type": "text",
+              "name": "t:general.text",
+              "settings": {
+                "text": "⚡ Look Sharp. Move Bold. Discover the Polarized Collection ⚡",
+                "alignment_mobile": "center",
+                "alignment_tablet": "center",
+                "alignment_desktop": "center",
+                "font_size_mobile": "10px",
+                "font_size_tablet": "1rem",
+                "font_size_desktop": "1rem",
+                "font_weight_mobile": "400",
+                "font_weight_tablet": "400",
+                "font_weight_desktop": "400",
+                "color_mobile": "#FFFFFF",
+                "color_tablet": "#FFFFFF",
+                "color_desktop": "#FFFFFF",
+                "line_height_mobile": "1.5",
+                "line_height_tablet": "1.5",
+                "line_height_desktop": "1.5",
+                "letter_spacing_mobile": "normal",
+                "letter_spacing_tablet": "normal",
+                "letter_spacing_desktop": "normal",
+                "text_transform_mobile": "none",
+                "text_transform_tablet": "none",
+                "text_transform_desktop": "none",
+                "padding_mobile": "0",
+                "padding_tablet": "0",
+                "padding_desktop": "0",
+                "margin_mobile": "0",
+                "margin_tablet": "0",
+                "margin_desktop": "0"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_cxEqRw"
+          ]
+        }
+      },
+      "block_order": [
+        "bar_GTdRby"
+      ],
+      "name": "t:general.custom_section",
+      "settings": {}
     }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "custom_section_XzfWzL"
+  ]
 }
