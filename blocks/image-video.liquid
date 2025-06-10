@@ -1,0 +1,224 @@
+{% stylesheet %}
+  .image-wrapper {
+    overflow: hidden;
+    display: block;
+    width: 100%;
+  }
+
+  .image-wrapper img,
+  .image-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: var(--object-fit);
+    border-radius: var(--border-radius-mobile);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
+  }
+
+  @media screen and (min-width: 768px) {
+    .image-wrapper img,
+    .image-wrapper video {
+      border-radius: var(--border-radius-tablet);
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .image-wrapper img,
+    .image-wrapper video {
+      border-radius: var(--border-radius-desktop);
+    }
+  }
+{% endstylesheet %}
+
+<div
+  class="image-wrapper"
+  style="
+    width: {{ section.settings.width }};
+    height: {{ section.settings.height }};
+    --object-fit: {{ section.settings.object_fit }};
+    --border-radius-mobile: {{ section.settings.border_radius_mobile }};
+    --border-radius-tablet: {{ section.settings.border_radius_tablet }};
+    --border-radius-desktop: {{ section.settings.border_radius_desktop }};
+    --box-shadow: {{ section.settings.box_shadow }};
+  "
+>
+  {% if section.settings.link_url != blank %}
+    <a href="{{ section.settings.link_url }}">
+  {% endif %}
+
+  {% if section.settings.media_type == 'image' %}
+    {% if section.settings.image %}
+      {{
+        section.settings.image
+        | image_url: width: 2000
+        | image_tag:
+          loading: section.settings.lazyload,
+          widths: '400, 800, 1200, 1600, 2000',
+          alt: section.settings.alt_text,
+          class: 'custom-image'
+      }}
+    {% endif %}
+
+  {% elsif section.settings.media_type == 'video' %}
+    {% if section.settings.video %}
+      <video
+        src="{{ section.settings.video | file_url }}"
+        {% if section.settings.autoplay %}
+          autoplay
+        {% endif %}
+        {% if section.settings.loop %}
+          loop
+        {% endif %}
+        {% if section.settings.muted %}
+          muted
+        {% endif %}
+        {% if section.settings.playsinline %}
+          playsinline
+        {% endif %}
+        {% unless section.settings.show_controls %}
+          controls="false"
+        {% else %}
+          controls
+        {% endunless %}
+        class="custom-video"
+      ></video>
+    {% endif %}
+  {% endif %}
+
+  {% if section.settings.link_url != blank %}
+    </a>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Custom Image/Video",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        { "value": "image", "label": "Image" },
+        { "value": "video", "label": "Video" }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Upload image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Upload video",
+      "info": "Supports .mp4, .webm"
+    },
+    {
+      "type": "text",
+      "id": "alt_text",
+      "label": "Alt text",
+      "default": "Media alt text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Optional link"
+    },
+    {
+      "type": "select",
+      "id": "object_fit",
+      "label": "Object fit",
+      "default": "cover",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "fill", "label": "Fill" },
+        { "value": "none", "label": "None" },
+        { "value": "scale-down", "label": "Scale down" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "width",
+      "label": "Width",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "height",
+      "label": "Height",
+      "default": "auto"
+    },
+    {
+      "type": "text",
+      "id": "border_radius_mobile",
+      "label": "Border radius (Mobile)",
+      "default": "0px"
+    },
+    {
+      "type": "text",
+      "id": "border_radius_tablet",
+      "label": "Border radius (Tablet)",
+      "default": "0px"
+    },
+    {
+      "type": "text",
+      "id": "border_radius_desktop",
+      "label": "Border radius (Desktop)",
+      "default": "0px"
+    },
+    {
+      "type": "text",
+      "id": "box_shadow",
+      "label": "Box shadow",
+      "default": "none",
+      "info": "e.g. 0px 4px 10px rgba(0,0,0,0.2)"
+    },
+    {
+      "type": "checkbox",
+      "id": "lazyload",
+      "label": "Lazy load image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Muted video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "playsinline",
+      "label": "Play inline on mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_controls",
+      "label": "Show video controls",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Media Block",
+      "category": "Media"
+    }
+  ]
+}
+{% endschema %}
