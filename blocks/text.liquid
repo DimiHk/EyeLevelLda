@@ -1,19 +1,45 @@
 {% doc %}
-  Renders a highly customizable text block.
+  Renders a highly customizable text block with responsive styling (mobile/tablet/desktop).
 {% enddoc %}
 
 <div
   class="text-block"
   style="
-    text-align: {{ block.settings.alignment }};
-    font-size: {{ block.settings.font_size }};
-    font-weight: {{ block.settings.font_weight }};
-    color: {{ block.settings.color }};
-    line-height: {{ block.settings.line_height }};
-    letter-spacing: {{ block.settings.letter_spacing }};
-    text-transform: {{ block.settings.text_transform }};
-    padding: {{ block.settings.padding }};
-    margin: {{ block.settings.margin }};
+    --alignment-mobile: {{ block.settings.alignment_mobile }};
+    --alignment-tablet: {{ block.settings.alignment_tablet }};
+    --alignment-desktop: {{ block.settings.alignment_desktop }};
+
+    --font-size-mobile: {{ block.settings.font_size_mobile }};
+    --font-size-tablet: {{ block.settings.font_size_tablet }};
+    --font-size-desktop: {{ block.settings.font_size_desktop }};
+
+    --font-weight-mobile: {{ block.settings.font_weight_mobile }};
+    --font-weight-tablet: {{ block.settings.font_weight_tablet }};
+    --font-weight-desktop: {{ block.settings.font_weight_desktop }};
+
+    --color-mobile: {{ block.settings.color_mobile }};
+    --color-tablet: {{ block.settings.color_tablet }};
+    --color-desktop: {{ block.settings.color_desktop }};
+
+    --line-height-mobile: {{ block.settings.line_height_mobile }};
+    --line-height-tablet: {{ block.settings.line_height_tablet }};
+    --line-height-desktop: {{ block.settings.line_height_desktop }};
+
+    --letter-spacing-mobile: {{ block.settings.letter_spacing_mobile }};
+    --letter-spacing-tablet: {{ block.settings.letter_spacing_tablet }};
+    --letter-spacing-desktop: {{ block.settings.letter_spacing_desktop }};
+
+    --text-transform-mobile: {{ block.settings.text_transform_mobile }};
+    --text-transform-tablet: {{ block.settings.text_transform_tablet }};
+    --text-transform-desktop: {{ block.settings.text_transform_desktop }};
+
+    --padding-mobile: {{ block.settings.padding_mobile }};
+    --padding-tablet: {{ block.settings.padding_tablet }};
+    --padding-desktop: {{ block.settings.padding_desktop }};
+
+    --margin-mobile: {{ block.settings.margin_mobile }};
+    --margin-tablet: {{ block.settings.margin_tablet }};
+    --margin-desktop: {{ block.settings.margin_desktop }};
   "
   {{ block.shopify_attributes }}
 >
@@ -24,6 +50,47 @@
   .text-block {
     width: 100%;
     word-break: break-word;
+
+    /* MOBILE (default) */
+    text-align: var(--alignment-mobile);
+    font-size: var(--font-size-mobile);
+    font-weight: var(--font-weight-mobile);
+    color: var(--color-mobile);
+    line-height: var(--line-height-mobile);
+    letter-spacing: var(--letter-spacing-mobile);
+    text-transform: var(--text-transform-mobile);
+    padding: var(--padding-mobile);
+    margin: var(--margin-mobile);
+  }
+
+  /* TABLET */
+  @media screen and (min-width: 768px) {
+    .text-block {
+      text-align: var(--alignment-tablet);
+      font-size: var(--font-size-tablet);
+      font-weight: var(--font-weight-tablet);
+      color: var(--color-tablet);
+      line-height: var(--line-height-tablet);
+      letter-spacing: var(--letter-spacing-tablet);
+      text-transform: var(--text-transform-tablet);
+      padding: var(--padding-tablet);
+      margin: var(--margin-tablet);
+    }
+  }
+
+  /* DESKTOP */
+  @media screen and (min-width: 1024px) {
+    .text-block {
+      text-align: var(--alignment-desktop);
+      font-size: var(--font-size-desktop);
+      font-weight: var(--font-weight-desktop);
+      color: var(--color-desktop);
+      line-height: var(--line-height-desktop);
+      letter-spacing: var(--letter-spacing-desktop);
+      text-transform: var(--text-transform-desktop);
+      padding: var(--padding-desktop);
+      margin: var(--margin-desktop);
+    }
   }
 {% endstylesheet %}
 
@@ -37,23 +104,53 @@
       "label": "t:labels.text",
       "default": "Customizable text block"
     },
+
+    /* Alignment */
     {
       "type": "text_alignment",
-      "id": "alignment",
-      "label": "t:labels.alignment",
+      "id": "alignment_mobile",
+      "label": "Alignment (Mobile)",
       "default": "left"
     },
     {
+      "type": "text_alignment",
+      "id": "alignment_tablet",
+      "label": "Alignment (Tablet)",
+      "default": "left"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment_desktop",
+      "label": "Alignment (Desktop)",
+      "default": "left"
+    },
+
+    /* Font size */
+    {
       "type": "text",
-      "id": "font_size",
-      "label": "Font size",
+      "id": "font_size_mobile",
+      "label": "Font size (Mobile)",
       "default": "1rem",
       "info": "Accepts units like rem, px, em, %, etc."
     },
     {
+      "type": "text",
+      "id": "font_size_tablet",
+      "label": "Font size (Tablet)",
+      "default": "1.25rem"
+    },
+    {
+      "type": "text",
+      "id": "font_size_desktop",
+      "label": "Font size (Desktop)",
+      "default": "1.5rem"
+    },
+
+    /* Font weight */
+    {
       "type": "select",
-      "id": "font_weight",
-      "label": "Font weight",
+      "id": "font_weight_mobile",
+      "label": "Font weight (Mobile)",
       "default": "400",
       "options": [
         { "value": "100", "label": "Thin" },
@@ -68,30 +165,106 @@
       ]
     },
     {
+      "type": "select",
+      "id": "font_weight_tablet",
+      "label": "Font weight (Tablet)",
+      "default": "400",
+      "options": [
+        /* same as mobile */ { "value": "100", "label": "Thin" },
+        { "value": "200", "label": "Extra Light" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "font_weight_desktop",
+      "label": "Font weight (Desktop)",
+      "default": "400",
+      "options": [
+        /* same as mobile */ { "value": "100", "label": "Thin" },
+        { "value": "200", "label": "Extra Light" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" },
+        { "value": "900", "label": "Black" }
+      ]
+    },
+
+    /* Color */
+    {
       "type": "text",
-      "id": "color",
-      "label": "Text color",
+      "id": "color_mobile",
+      "label": "Text color (Mobile)",
       "default": "#000000",
       "info": "Supports hex or rgba(), e.g. rgba(0,0,0,0.8)"
     },
     {
       "type": "text",
-      "id": "line_height",
-      "label": "Line height",
-      "default": "1.5",
-      "info": "e.g., 1.2, 1.5, 2, etc."
+      "id": "color_tablet",
+      "label": "Text color (Tablet)",
+      "default": "#000000"
     },
     {
       "type": "text",
-      "id": "letter_spacing",
-      "label": "Letter spacing",
-      "default": "normal",
-      "info": "e.g., 0.5px, normal, -0.2px"
+      "id": "color_desktop",
+      "label": "Text color (Desktop)",
+      "default": "#000000"
+    },
+
+    /* Line height */
+    {
+      "type": "text",
+      "id": "line_height_mobile",
+      "label": "Line height (Mobile)",
+      "default": "1.5"
     },
     {
+      "type": "text",
+      "id": "line_height_tablet",
+      "label": "Line height (Tablet)",
+      "default": "1.5"
+    },
+    {
+      "type": "text",
+      "id": "line_height_desktop",
+      "label": "Line height (Desktop)",
+      "default": "1.5"
+    },
+
+    /* Letter spacing */
+    {
+      "type": "text",
+      "id": "letter_spacing_mobile",
+      "label": "Letter spacing (Mobile)",
+      "default": "normal"
+    },
+    {
+      "type": "text",
+      "id": "letter_spacing_tablet",
+      "label": "Letter spacing (Tablet)",
+      "default": "normal"
+    },
+    {
+      "type": "text",
+      "id": "letter_spacing_desktop",
+      "label": "Letter spacing (Desktop)",
+      "default": "normal"
+    },
+
+    /* Text transform */
+    {
       "type": "select",
-      "id": "text_transform",
-      "label": "Text transform",
+      "id": "text_transform_mobile",
+      "label": "Text transform (Mobile)",
       "default": "none",
       "options": [
         { "value": "none", "label": "None" },
@@ -101,18 +274,68 @@
       ]
     },
     {
+      "type": "select",
+      "id": "text_transform_tablet",
+      "label": "Text transform (Tablet)",
+      "default": "none",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "text_transform_desktop",
+      "label": "Text transform (Desktop)",
+      "default": "none",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ]
+    },
+
+    /* Padding */
+    {
       "type": "text",
-      "id": "padding",
-      "label": "Padding",
-      "default": "0",
-      "info": "e.g., 1rem 2rem"
+      "id": "padding_mobile",
+      "label": "Padding (Mobile)",
+      "default": "0"
     },
     {
       "type": "text",
-      "id": "margin",
-      "label": "Margin",
-      "default": "0",
-      "info": "e.g., 0 auto, 1rem 0"
+      "id": "padding_tablet",
+      "label": "Padding (Tablet)",
+      "default": "0"
+    },
+    {
+      "type": "text",
+      "id": "padding_desktop",
+      "label": "Padding (Desktop)",
+      "default": "0"
+    },
+
+    /* Margin */
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "Margin (Mobile)",
+      "default": "0"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet",
+      "label": "Margin (Tablet)",
+      "default": "0"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "Margin (Desktop)",
+      "default": "0"
     }
   ],
   "presets": [
@@ -120,15 +343,33 @@
       "name": "t:general.text",
       "settings": {
         "text": "Customizable text block",
-        "alignment": "left",
-        "font_size": "1rem",
-        "font_weight": "400",
-        "color": "#000000",
-        "line_height": "1.5",
-        "letter_spacing": "normal",
-        "text_transform": "none",
-        "padding": "0",
-        "margin": "0"
+        "alignment_mobile": "left",
+        "alignment_tablet": "left",
+        "alignment_desktop": "left",
+        "font_size_mobile": "1rem",
+        "font_size_tablet": "1.25rem",
+        "font_size_desktop": "1.5rem",
+        "font_weight_mobile": "400",
+        "font_weight_tablet": "400",
+        "font_weight_desktop": "400",
+        "color_mobile": "#000000",
+        "color_tablet": "#000000",
+        "color_desktop": "#000000",
+        "line_height_mobile": "1.5",
+        "line_height_tablet": "1.5",
+        "line_height_desktop": "1.5",
+        "letter_spacing_mobile": "normal",
+        "letter_spacing_tablet": "normal",
+        "letter_spacing_desktop": "normal",
+        "text_transform_mobile": "none",
+        "text_transform_tablet": "none",
+        "text_transform_desktop": "none",
+        "padding_mobile": "0",
+        "padding_tablet": "0",
+        "padding_desktop": "0",
+        "margin_mobile": "0",
+        "margin_tablet": "0",
+        "margin_desktop": "0"
       }
     }
   ]
