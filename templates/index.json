@@ -103,25 +103,7 @@
             "image_video_iRwBJC": {
               "type": "image-video",
               "name": "Custom Media Block",
-              "settings": {
-                "media_type": "video",
-                "video": "https://youtu.be/d6L88EoA34o?si=qw6HTuJAgseh2pqV",
-                "alt_text": "Media alt text",
-                "link_url": "",
-                "object_fit": "cover",
-                "width": "100%",
-                "height": "auto",
-                "border_radius_mobile": "0px",
-                "border_radius_tablet": "0px",
-                "border_radius_desktop": "0px",
-                "box_shadow": "none",
-                "lazyload": true,
-                "autoplay": true,
-                "loop": true,
-                "muted": true,
-                "playsinline": true,
-                "show_controls": false
-              },
+              "settings": {},
               "blocks": {}
             }
           },
