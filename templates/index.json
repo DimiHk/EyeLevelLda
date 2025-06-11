@@ -496,6 +496,22 @@
       ],
       "name": "t:general.custom_section",
       "settings": {}
+    },
+    "custom_section_GmHCY9": {
+      "type": "custom-section",
+      "blocks": {
+        "contact_block_jWAYy9": {
+          "type": "contact-block",
+          "name": "Contact Block",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "contact_block_jWAYy9"
+      ],
+      "name": "t:general.custom_section",
+      "settings": {}
     }
   },
   "order": [
@@ -506,6 +522,7 @@
     "custom_section_J6KjYK",
     "custom_section_4gVwjp",
     "custom_section_P4Ggrn",
-    "custom_section_xeAxkR"
+    "custom_section_xeAxkR",
+    "custom_section_GmHCY9"
   ]
 }
