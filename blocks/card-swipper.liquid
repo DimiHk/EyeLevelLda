@@ -1,0 +1,76 @@
+{% schema %}
+{
+  "name": "Card Image Swiper",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Card Image Swiper"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="card-swiper-wrapper" style="max-width: 320px; margin: 0 auto; padding: 2rem 0;">
+  <div class="swiper card-swiper">
+    <div class="swiper-wrapper">
+      {% for i in (1..3) %}
+        <div class="swiper-slide">
+          <div class="card-slide">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0920/9806/8863/files/portugal.jpg?v=1749588975"
+              alt="Card"
+            >
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+<style>
+  .card-swiper .swiper-slide {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-swiper .card-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    new Swiper('.card-swiper', {
+      effect: 'cards',
+      grabCursor: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  });
+</script>
