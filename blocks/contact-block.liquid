@@ -11,7 +11,9 @@
 {% endschema %}
 
 <div class="contact-block">
-  <h2 class="contact-title">Contact Us</h2>
+  <div class="contact-header-container">
+    <span class="contact-title">Contact Us</span>
+  </div>
   {% form 'contact', id: 'contact-form', class: 'contact-form' %}
     {% if form.posted_successfully? %}
       <p class="form-success">Thank you for your message! We'll get back to you soon.</p>
@@ -25,48 +27,45 @@
     {% endif %}
 
     <div class="form-field">
-      <label for="contact-name"><span class="required-asterisk">*</span> Full Name</label>
+      <label for="contact-name">Full Name <span class="required-asterisk">*</span></label>
       <input
         type="text"
         id="contact-name"
         name="contact[name]"
         required
         value="{{ form.name }}"
-        placeholder="Enter your full name"
       >
     </div>
 
     <div class="form-field">
-      <label for="contact-email"><span class="required-asterisk">*</span> Email</label>
+      <label for="contact-email">Email <span class="required-asterisk">*</span></label>
       <input
         type="email"
         id="contact-email"
         name="contact[email]"
         required
         value="{{ form.email }}"
-        placeholder="Enter your email address"
       >
     </div>
 
     <div class="form-field">
-      <label for="contact-subject"><span class="required-asterisk">*</span> Subject</label>
+      <label for="contact-subject">Subject <span class="required-asterisk">*</span></label>
       <input
         type="text"
         id="contact-subject"
         name="contact[subject]"
         required
         value="{{ form.subject }}"
-        placeholder="Enter the subject"
       >
     </div>
 
     <div class="form-field">
-      <label for="contact-message"><span class="required-asterisk">*</span> Message</label>
+      <label for="contact-message">Message <span class="required-asterisk">*</span> </label>
       <textarea
         id="contact-message"
+        rows="6"
         name="contact[body]"
         required
-        placeholder="Enter your message"
       >{{ form.body }}</textarea>
     </div>
 
@@ -78,15 +77,21 @@
   .contact-block {
     max-width: 600px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 50px 20px;
+  }
+
+  .contact-header-container {
+    display: flex;
+    justify-content: center;
   }
 
   .contact-title {
     font-size: 2rem;
-    text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #000;
+    border-bottom: 0.5px solid #000;
     padding-bottom: 10px;
+    margin-bottom: 20px;
+    width: 240px;
+    text-align: center;
   }
 
   .contact-form {
@@ -101,7 +106,6 @@
   }
 
   .form-field label {
-    font-weight: bold;
     margin-bottom: 8px;
   }
 
@@ -126,7 +130,7 @@
   }
 
   .send-button {
-    background-color: #000;
+    background-color: #333333;
     color: #fff;
     padding: 12px 20px;
     border: none;
@@ -135,6 +139,7 @@
     cursor: pointer;
     align-self: center;
     transition: background-color 0.3s;
+    width: 100%;
   }
 
   .send-button:hover {
@@ -158,7 +163,7 @@
   /* Responsive adjustments */
   @media (max-width: 767px) {
     .contact-block {
-      padding: 20px 10px;
+      padding: 50px 20px;
     }
 
     .contact-title {
