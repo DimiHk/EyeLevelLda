@@ -447,26 +447,32 @@
                 "margin_desktop": "0"
               },
               "blocks": {}
-            },
-            "before_and_after_NnYYBU": {
-              "type": "before-and-after",
-              "name": "Before and After",
-              "settings": {
-                "before_image": "shopify://shop_images/portugal.jpg",
-                "after_image": "shopify://shop_images/2015-07-08_Laydown_51242_24409.jpg"
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "text_mkcxER",
-            "text_WJHFmm",
-            "before_and_after_NnYYBU"
+            "text_WJHFmm"
           ]
         }
       },
       "block_order": [
         "bar_3DwbpP"
+      ],
+      "name": "t:general.custom_section",
+      "settings": {}
+    },
+    "custom_section_P4Ggrn": {
+      "type": "custom-section",
+      "blocks": {
+        "before_and_after_eXbbyr": {
+          "type": "before-and-after",
+          "name": "Before and After",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "before_and_after_eXbbyr"
       ],
       "name": "t:general.custom_section",
       "settings": {}
@@ -478,6 +484,7 @@
     "custom_section_eNJe8L",
     "custom_section_fw38Wh",
     "custom_section_J6KjYK",
-    "custom_section_4gVwjp"
+    "custom_section_4gVwjp",
+    "custom_section_P4Ggrn"
   ]
 }
