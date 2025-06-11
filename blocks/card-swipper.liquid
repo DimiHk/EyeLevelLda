@@ -37,60 +37,75 @@
 {% endschema %}
 
 <div class="swiper marquee-slider">
+  <span class="swiper-notification"></span>
   <div class="swiper-wrapper">
-    {% assign images = '' %}
-    {% for i in (1..5) %}
-      {% assign image_key = 'image_' | append: i %}
-      {% assign img = section.settings[image_key] %}
-      {% if img %}
-        {% assign images = images | append: img | append: '||' %}
-      {% endif %}
-    {% endfor %}
-
-    {% assign image_array = images | split: '||' | compact %}
-
-    {%- comment -%}
-      Duplicate images to enable seamless looping.
-    {%- endcomment -%}
-    {% for image in image_array %}
-      {% if image %}
-        <div class="swiper-slide">
-          <div class="card-slide">
-            <img src="{{ image | img_url: '600x600' }}" alt="Marquee image {{ forloop.index }}">
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
-    {% for image in image_array %}
-      {% if image %}
-        <div class="swiper-slide">
-          <div class="card-slide">
-            <img src="{{ image | img_url: '600x600' }}" alt="Marquee image duplicate {{ forloop.index }}">
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+    <div class="swiper-slide">
+      <div class="card-slide">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0920/9806/8863/files/portugal.jpg?v=1749588975"
+          alt="Marquee image {{ forloop.index }}"
+        >
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <div class="card-slide">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0920/9806/8863/files/portugal.jpg?v=1749588975"
+          alt="Marquee image {{ forloop.index }}"
+        >
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <div class="card-slide">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0920/9806/8863/files/portugal.jpg?v=1749588975"
+          alt="Marquee image {{ forloop.index }}"
+        >
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <div class="card-slide">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0920/9806/8863/files/portugal.jpg?v=1749588975"
+          alt="Marquee image {{ forloop.index }}"
+        >
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <div class="card-slide">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0920/9806/8863/files/portugal.jpg?v=1749588975"
+          alt="Marquee image {{ forloop.index }}"
+        >
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <div class="card-slide">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0920/9806/8863/files/portugal.jpg?v=1749588975"
+          alt="Marquee image {{ forloop.index }}"
+        >
+      </div>
+    </div>
   </div>
 </div>
-
 <style>
   .marquee-slider {
+    padding-top: 50px;
     width: 100%;
-    height: 200px;
     overflow: hidden;
+    min-height: 520px; /* Match card height */
   }
 
   .marquee-slider .swiper-slide {
-    width: auto !important;
+    width: 520px; /* Match card width */
     flex-shrink: 0;
   }
 
   .marquee-slider .card-slide {
-    border-radius: 12px;
+    width: 100%; /* Square dimensions */
+    height: 350px; /* Square dimensions */
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    height: 200px;
   }
 
   .marquee-slider .card-slide img {
@@ -99,25 +114,51 @@
     object-fit: cover;
     display: block;
   }
+
+  /* Ensure responsiveness on small screens */
+  @media (max-width: 460px) {
+    .marquee-slider {
+      min-height: 200px; /* Match card height */
+    }
+
+    .marquee-slider .swiper-slide {
+      width: 200px; /* Match card width */
+    }
+
+    .marquee-slider .card-slide {
+      width: 200px; /* Square dimensions */
+      height: 200px; /* Square dimensions */
+    }
+  }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    if (typeof Swiper !== 'undefined') {
-      new Swiper('.marquee-slider', {
+    if (typeof Swiper === 'undefined') {
+      console.error('Swiper library is not loaded. Please include the Swiper JS file.');
+      return;
+    }
+
+    const slider = document.querySelector('.marquee-slider');
+    if (!slider) {
+      console.error('Marquee slider element not found.');
+      return;
+    }
+
+    try {
+      const swiper = new Swiper('.marquee-slider', {
         slidesPerView: 'auto',
         spaceBetween: 0,
         loop: true,
-        speed: 4000,
+        speed: 2000,
         autoplay: {
-          delay: 0,
-          disableOnInteraction: false,
+          delay: 100,
+          disableOnInteraction: true,
         },
-        freeMode: true,
-        freeModeMomentum: false,
       });
-    } else {
-      console.warn('Swiper library is not loaded.');
+      console.log('Swiper initialized:', swiper);
+    } catch (error) {
+      console.error('Error initializing Swiper:', error);
     }
   });
 </script>

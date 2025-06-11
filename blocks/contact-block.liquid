@@ -1,0 +1,205 @@
+{% schema %}
+{
+  "name": "Contact Block",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Contact Block"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="contact-block">
+  <h2 class="contact-title">Contact Us</h2>
+  {% form 'contact', id: 'contact-form', class: 'contact-form' %}
+    {% if form.posted_successfully? %}
+      <p class="form-success">Thank you for your message! We'll get back to you soon.</p>
+    {% endif %}
+    {% if form.errors %}
+      <div class="form-errors">
+        {% for field in form.errors %}
+          <p>{{ field | capitalize }} - {{ form.errors.messages[field] }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="form-field">
+      <label for="contact-name"><span class="required-asterisk">*</span> Full Name</label>
+      <input
+        type="text"
+        id="contact-name"
+        name="contact[name]"
+        required
+        value="{{ form.name }}"
+        placeholder="Enter your full name"
+      >
+    </div>
+
+    <div class="form-field">
+      <label for="contact-email"><span class="required-asterisk">*</span> Email</label>
+      <input
+        type="email"
+        id="contact-email"
+        name="contact[email]"
+        required
+        value="{{ form.email }}"
+        placeholder="Enter your email address"
+      >
+    </div>
+
+    <div class="form-field">
+      <label for="contact-subject"><span class="required-asterisk">*</span> Subject</label>
+      <input
+        type="text"
+        id="contact-subject"
+        name="contact[subject]"
+        required
+        value="{{ form.subject }}"
+        placeholder="Enter the subject"
+      >
+    </div>
+
+    <div class="form-field">
+      <label for="contact-message"><span class="required-asterisk">*</span> Message</label>
+      <textarea
+        id="contact-message"
+        name="contact[body]"
+        required
+        placeholder="Enter your message"
+      >{{ form.body }}</textarea>
+    </div>
+
+    <button type="submit" class="send-button">Send</button>
+  {% endform %}
+</div>
+
+<style>
+  .contact-block {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .contact-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-field label {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .required-asterisk {
+    color: red;
+    margin-right: 4px;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .form-field textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .send-button {
+    background-color: #000;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+    transition: background-color 0.3s;
+  }
+
+  .send-button:hover {
+    background-color: #333;
+  }
+
+  .form-success,
+  .form-errors {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form-success {
+    color: green;
+  }
+
+  .form-errors {
+    color: red;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 767px) {
+    .contact-block {
+      padding: 20px 10px;
+    }
+
+    .contact-title {
+      font-size: 1.5rem;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      font-size: 0.9rem;
+    }
+
+    .send-button {
+      padding: 10px 15px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', function (event) {
+        // Basic client-side validation
+        const inputs = form.querySelectorAll('input[required], textarea[required]');
+        let isValid = true;
+
+        inputs.forEach((input) => {
+          if (!input.value.trim()) {
+            isValid = false;
+            input.style.borderColor = 'red';
+          } else {
+            input.style.borderColor = '#ccc';
+          }
+        });
+
+        if (!isValid) {
+          event.preventDefault();
+          alert('Please fill out all required fields.');
+        }
+      });
+    }
+  });
+</script>
