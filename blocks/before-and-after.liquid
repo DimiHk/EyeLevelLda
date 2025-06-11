@@ -3,13 +3,19 @@
   .before-after-container {
     position: relative;
     width: 100%;
-    max-width: 800px;
+    max-width: 90%;
+    min-height: 520px;
+    max-height: 40vh;
     height: auto;
     margin: 0 auto;
     overflow: hidden;
   }
+
   .before-after-container img {
     width: 100%;
+    min-height: 520px;
+    max-height: 40vh;
+    border-radius: 50px;
     height: auto;
     object-fit: cover;
     display: block;
@@ -17,52 +23,51 @@
     top: 0;
     left: 0;
   }
+
   .before-image {
     z-index: 1;
-    filter: brightness(1.2); /* Brightness on before image */
+    filter: brightness(1.2);
   }
+
   .after-image {
     z-index: 2;
     clip-path: inset(0 50% 0 0);
   }
+
   .slider {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 4px;
+    width: 2px;
     height: 100%;
     background: #fff;
     cursor: ew-resize;
     z-index: 3;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    touch-action: none; /* Prevent default touch behaviors */
+    touch-action: none;
   }
+
   .slider::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40px;
+    width: 90px;
+    border-radius: 8px;
     height: 40px;
     background: #fff;
-    border-radius: 50%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   }
+
   .slider::after {
-    content: '↔';
+    content: 'Drag';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 20px;
     color: #333;
-  }
-  .error-message {
-    display: none;
-    color: red;
-    text-align: center;
-    padding: 20px;
+    font-size: 0.875rem;
   }
 
   /* Mobile-specific styles */
@@ -73,19 +78,41 @@
       max-height: 80vh; /* Limit to 80% of viewport height */
       height: auto;
     }
+
     .before-after-container img {
       width: 100%;
       height: auto;
       min-height: 300px;
       max-height: 80vh;
-      object-fit: cover;
+      border-radius: 0px;
+      object-fit: fill;
     }
-    .slider {
-      width: 6px; /* Thicker for touch */
-    }
+
     .slider::before {
-      width: 48px; /* Larger touch target */
-      height: 48px;
+      width: 80px;
+    }
+
+    .slider::after {
+      font-size: 0.785rem;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .before-after-container {
+      min-height: 210px;
+    }
+
+    .before-after-container img {
+      min-height: 210px;
+    }
+
+    .slider::before {
+      width: 60px;
+      height: 30px;
+    }
+
+    .slider::after {
+      font-size: 0.5rem;
     }
   }
 </style>
@@ -96,17 +123,14 @@
     src="https://cdn.shopify.com/s/files/1/0920/9806/8863/files/portugal.jpg?v=1749588975"
     alt="Before Image"
     loading="lazy"
-    onerror="this.parentElement.querySelector('.error-message').style.display='block';"
   >
   <img
     class="after-image"
     src="https://cdn.shopify.com/s/files/1/0920/9806/8863/files/portugal.jpg?v=1749588975"
     alt="After Image"
     loading="lazy"
-    onerror="this.parentElement.querySelector('.error-message').style.display='block';"
   >
   <div class="slider"></div>
-  <div class="error-message">Failed to load images. Please check the image URLs.</div>
 </section>
 
 <script>
