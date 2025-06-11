@@ -476,6 +476,26 @@
       ],
       "name": "t:general.custom_section",
       "settings": {}
+    },
+    "custom_section_xeAxkR": {
+      "type": "custom-section",
+      "blocks": {
+        "card_swipper_nc8jkk": {
+          "type": "card-swipper",
+          "name": "Card Image Swiper",
+          "settings": {
+            "image_1": "shopify://shop_images/portugal.jpg",
+            "image_2": "shopify://shop_images/portugal.jpg",
+            "image_3": "shopify://shop_images/portugal.jpg"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "card_swipper_nc8jkk"
+      ],
+      "name": "t:general.custom_section",
+      "settings": {}
     }
   },
   "order": [
@@ -485,6 +505,7 @@
     "custom_section_fw38Wh",
     "custom_section_J6KjYK",
     "custom_section_4gVwjp",
-    "custom_section_P4Ggrn"
+    "custom_section_P4Ggrn",
+    "custom_section_xeAxkR"
   ]
 }
