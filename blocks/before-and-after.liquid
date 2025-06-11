@@ -1,0 +1,162 @@
+{% schema %}
+{
+  "name": "Before and After",
+  "tag": "section",
+  "class": "before-after-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "before_image",
+      "label": "Before Image (non-polarized)"
+    },
+    {
+      "type": "image_picker",
+      "id": "after_image",
+      "label": "After Image (polarized)"
+    },
+    {
+      "type": "text",
+      "id": "before_label",
+      "label": "Before Label",
+      "default": "Non-polarized"
+    },
+    {
+      "type": "text",
+      "id": "after_label",
+      "label": "After Label",
+      "default": "Polarized"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before and After",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+  .before-after-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+    margin: auto;
+  }
+  .before-after-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  .before-after-image,
+  .before-after-image img {
+    width: 100%;
+    display: block;
+  }
+  .before-after-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+    height: 100%;
+  }
+  .before-after-overlay img {
+    display: block;
+    width: 100%;
+  }
+  .before-after-slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: #fff;
+    cursor: ew-resize;
+    z-index: 10;
+  }
+  .before-after-handle {
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    transform: translateY(-50%);
+    background: #000;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    z-index: 11;
+  }
+  .before-after-labels {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 5px black;
+    z-index: 12;
+  }
+{% endstyle %}
+
+<div class="before-after-container">
+  <div class="before-after-wrapper" id="before-after-wrapper">
+    <div class="before-after-image">
+      {% if section.settings.after_image %}
+        <img src="{{ section.settings.after_image | img_url: 'master' }}" alt="After Image">
+      {% endif %}
+    </div>
+    <div class="before-after-overlay" id="before-after-overlay">
+      {% if section.settings.before_image %}
+        <img src="{{ section.settings.before_image | img_url: 'master' }}" alt="Before Image">
+      {% endif %}
+    </div>
+    <div class="before-after-slider" id="before-after-slider">
+      <div class="before-after-handle">⇆</div>
+    </div>
+    <div class="before-after-labels">
+      <span>{{ section.settings.before_label }}</span>
+      <span>{{ section.settings.after_label }}</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const wrapper = document.getElementById('before-after-wrapper');
+    const overlay = document.getElementById('before-after-overlay');
+    const slider = document.getElementById('before-after-slider');
+
+    const startDrag = (e) => {
+      e.preventDefault();
+      document.addEventListener('mousemove', drag);
+      document.addEventListener('mouseup', stopDrag);
+      document.addEventListener('touchmove', drag);
+      document.addEventListener('touchend', stopDrag);
+    };
+
+    const drag = (e) => {
+      let x = e.pageX || e.touches[0].pageX;
+      const rect = wrapper.getBoundingClientRect();
+      let position = ((x - rect.left) / rect.width) * 100;
+      position = Math.max(0, Math.min(100, position));
+      overlay.style.width = `${position}%`;
+      slider.style.left = `${position}%`;
+    };
+
+    const stopDrag = () => {
+      document.removeEventListener('mousemove', drag);
+      document.removeEventListener('mouseup', stopDrag);
+      document.removeEventListener('touchmove', drag);
+      document.removeEventListener('touchend', stopDrag);
+    };
+
+    slider.addEventListener('mousedown', startDrag);
+    slider.addEventListener('touchstart', startDrag);
+  });
+</script>

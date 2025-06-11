@@ -118,3 +118,7 @@ body {
 .shopify-section > .full-width {
   grid-column: 1 / -1;
 }
+
+.shopify-block {
+  content: inherit;
+}
