@@ -447,11 +447,23 @@
                 "margin_desktop": "0"
               },
               "blocks": {}
+            },
+            "before_and_after_NnYYBU": {
+              "type": "before-and-after",
+              "name": "Before and After",
+              "settings": {
+                "before_image": "shopify://shop_images/portugal.jpg",
+                "after_image": "shopify://shop_images/2015-07-08_Laydown_51242_24409.jpg",
+                "before_label": "Non-polarized",
+                "after_label": "Polarized"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
             "text_mkcxER",
-            "text_WJHFmm"
+            "text_WJHFmm",
+            "before_and_after_NnYYBU"
           ]
         }
       },
