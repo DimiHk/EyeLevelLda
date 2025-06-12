@@ -1,5 +1,5 @@
 {% comment %}
-  Product Grid Section - dynamic mapping of all products
+  Product Grid Section - dynamic mapping of products with thumbnail navigation arrows cycling through variants, inspired by revo.com
 {% endcomment %}
 
 <section class="product-grid-section">
@@ -8,7 +8,7 @@
       <div class="product-grid">
         {% for product in collections.all.products %}
           <div class="product-card" data-product-id="{{ product.id }}">
-            <div class="product-main" role="button" tabindex="0" onclick="openModal({{ forloop.index0 }})">
+            <div class="product-main">
               <img
                 src="{{ product.featured_image | image_url }}"
                 alt="{{ product.title }}"
@@ -17,25 +17,34 @@
               >
               <h3 class="product-title">{{ product.title }}</h3>
             </div>
-            <div class="variant-thumbnails">
+            <div class="variant-thumbnails" data-product-id="{{ product.id }}">
               {% assign media_counter = 0 %}
               {% for image in product.images %}
-                {% if image != product.featured_image %}
-                  {% assign media_counter = media_counter | plus: 1 %}
-                  <img
-                    src="{{ image | image_url: '100x100' }}"
-                    alt="Variant for {{ product.title }}"
-                    class="variant-thumb"
-                    loading="lazy"
-                  >
-                  {% if media_counter == 5 and product.images.size > 6 %}
-                    <div class="thumb-overflow">
-                      <span class="arrow-circle">→</span>
+                {% assign media_counter = media_counter | plus: 1 %}
+                <img
+                  src="{{ image | image_url }}"
+                  alt="{{ product.title }} {% if image == product.featured_image %}Main Image{% else %}Variant{% endif %}"
+                  class="variant-thumb {% if image == product.featured_image %}selected{% endif %} {% if media_counter > section.settings.thumbnails_per_page %}hidden{% endif %}"
+                  loading="lazy"
+                  onmouseover="previewThumbnail('{{ product.id }}', '{{ image | image_url }}', this)"
+                  onclick="selectThumbnail('{{ product.id }}', '{{ image | image_url }}', this)"
+                  data-index="{{ media_counter }}"
+                >
+                {% if media_counter == section.settings.thumbnails_per_page %}
+                  {% assign max_thumbnails = section.settings.thumbnails_per_page | plus: 1 %}
+                  {% if product.images.size > max_thumbnails %}
+                    <div class="thumb-overflow right-arrow">
+                      <span class="arrow-circle" onclick="showNextThumbnails('{{ product.id }}')">→</span>
                     </div>
-                    {% break %}
                   {% endif %}
+                  {% break %}
                 {% endif %}
               {% endfor %}
+              {% if media_counter > section.settings.thumbnails_per_page %}
+                <div class="thumb-overflow left-arrow hidden">
+                  <span class="arrow-circle" onclick="showPrevThumbnails('{{ product.id }}')">←</span>
+                </div>
+              {% endif %}
             </div>
           </div>
         {% endfor %}
@@ -45,13 +54,6 @@
         {{ paginate | default_pagination }}
       </div>
     {% endpaginate %}
-  </div>
-
-  <div id="product-modal" class="modal hidden">
-    <div class="modal-content">
-      <span class="modal-close" onclick="closeModal()">&times;</span>
-      <div class="modal-images"></div>
-    </div>
   </div>
 </section>
 
@@ -73,6 +75,12 @@
     }
   }
 
+  @media (max-width: 479px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .product-card {
     background: #fff;
     border-radius: 8px;
@@ -82,117 +90,106 @@
   }
 
   .product-main {
-    cursor: pointer;
+    position: relative;
+  }
+
+  .main-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: opacity 0.3s ease; /* Smooth image swap */
+    min-height: 500px;
+    max-height: 500px;
+    min-height: 500px;
+    max-height: 500px;
   }
 
   .product-title {
     margin-top: 0.5rem;
     font-size: 1rem;
     text-align: center;
+    color: #333;
   }
 
   .variant-thumbnails {
     display: flex;
     flex-wrap: nowrap;
-    overflow: hidden;
     gap: 0.5rem;
+    justify-content: center;
     margin-top: 0.5rem;
     position: relative;
+    padding: 0 40px; /* Space for arrows */
   }
 
   .variant-thumb {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    border-radius: 50%; /* Circular thumbnails like Revo */
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .variant-thumb:hover,
+  .variant-thumb.selected {
+    opacity: 1;
+    transform: scale(1.1); /* Slight scale on hover/selected */
+    border: 2px solid #007bff; /* Blue border for selected */
+  }
+
+  .variant-thumb.hidden {
+    display: none;
   }
 
   .thumb-overflow {
     position: absolute;
-    right: 0;
-    top: 0;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
-  .arrow-circle {
-    font-size: 1rem;
-  }
-
-  .modal {
-    position: fixed;
-    top: 0;
+  .thumb-overflow.left-arrow {
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
   }
 
-  .modal.hidden {
+  .thumb-overflow.right-arrow {
+    right: 0;
+  }
+
+  .thumb-overflow.hidden {
     display: none;
   }
 
-  .modal-content {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    max-width: 90vw;
-    max-height: 90vh;
-    overflow: auto;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-
-  .modal-images img {
-    max-width: 100%;
-    margin-bottom: 1rem;
+  .arrow-circle {
+    font-size: 0.8rem;
+    color: #333;
   }
 {% endstylesheet %}
-
-{% javascript %}
-  function openModal(index) {
-    const modal = document.getElementById('product-modal');
-    const productCards = document.querySelectorAll('.product-card');
-    const selectedProduct = productCards[index];
-    const imageElements = selectedProduct.querySelectorAll('img');
-
-    const modalImages = document.querySelector('.modal-images');
-    modalImages.innerHTML = '';
-
-    imageElements.forEach((img) => {
-      const clone = img.cloneNode();
-      modalImages.appendChild(clone);
-    });
-
-    modal.classList.remove('hidden');
-  }
-
-  function closeModal() {
-    document.getElementById('product-modal').classList.add('hidden');
-  }
-{% endjavascript %}
 
 {% schema %}
 {
   "name": "Product Grid With Modal",
-  "settings": [],
+  "settings": [
+    {
+      "type": "range",
+      "id": "thumbnails_per_page",
+      "label": "Thumbnails per page",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    }
+  ],
   "presets": [
     {
       "name": "Product Grid With Modal"

@@ -14,6 +14,85 @@
     {{ content_for_layout }}
     {% sections 'footer-group' %}
 
+    <script>
+      let currentThumbnailPage = {};
+      let selectedImageSrc = {};
+
+      function previewThumbnail(productId, imageSrc, element) {
+        // Update main image on hover
+        const productCard = document.querySelector(`.product-card[data-product-id="${productId}"]`);
+        const mainImage = productCard.querySelector('.main-image');
+        mainImage.src = imageSrc;
+        mainImage.alt = element.alt;
+      }
+
+      function selectThumbnail(productId, imageSrc, element) {
+        // Update main image and selected state on click
+        const productCard = document.querySelector(`.product-card[data-product-id="${productId}"]`);
+        const mainImage = productCard.querySelector('.main-image');
+        mainImage.src = imageSrc;
+        mainImage.alt = element.alt;
+
+        // Update selected state in thumbnails
+        const variantThumbs = productCard.querySelectorAll('.variant-thumb');
+        variantThumbs.forEach((thumb) => {
+          thumb.classList.toggle('selected', thumb.src === imageSrc);
+        });
+
+        // Store selected image
+        selectedImageSrc[productId] = imageSrc;
+      }
+
+      function updateThumbnailVisibility(productId) {
+        const thumbnails = document.querySelectorAll(
+          `.variant-thumbnails[data-product-id="${productId}"] .variant-thumb`
+        );
+        const rightArrow = document.querySelector(`.variant-thumbnails[data-product-id="${productId}"] .right-arrow`);
+        const leftArrow = document.querySelector(`.variant-thumbnails[data-product-id="${productId}"] .left-arrow`);
+        const thumbnailsPerPage = 5;
+
+        thumbnails.forEach((thumb, index) => {
+          const page = Math.floor(index / thumbnailsPerPage);
+          thumb.classList.toggle('hidden', page !== currentThumbnailPage[productId]);
+        });
+
+        // Always show arrows if thumbnails exceed thumbnailsPerPage
+        if (rightArrow && leftArrow) {
+          rightArrow.classList.toggle('hidden', thumbnails.length <= thumbnailsPerPage);
+          leftArrow.classList.toggle('hidden', thumbnails.length <= thumbnailsPerPage);
+        }
+      }
+
+      function showNextThumbnails(productId) {
+        const thumbnails = document.querySelectorAll(
+          `.variant-thumbnails[data-product-id="${productId}"] .variant-thumb`
+        );
+        const thumbnailsPerPage = 5;
+        const totalPages = Math.ceil(thumbnails.length / thumbnailsPerPage);
+
+        currentThumbnailPage[productId] = (currentThumbnailPage[productId] || 0) + 1;
+        if (currentThumbnailPage[productId] >= totalPages) {
+          currentThumbnailPage[productId] = 0; // Loop back to first page
+        }
+
+        updateThumbnailVisibility(productId);
+      }
+
+      function showPrevThumbnails(productId) {
+        const thumbnails = document.querySelectorAll(
+          `.variant-thumbnails[data-product-id="${productId}"] .variant-thumb`
+        );
+        const thumbnailsPerPage = 5;
+        const totalPages = Math.ceil(thumbnails.length / thumbnailsPerPage);
+
+        currentThumbnailPage[productId] = (currentThumbnailPage[productId] || 0) - 1;
+        if (currentThumbnailPage[productId] < 0) {
+          currentThumbnailPage[productId] = totalPages - 1; // Loop to last page
+        }
+
+        updateThumbnailVisibility(productId);
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
   </body>
 </html>
