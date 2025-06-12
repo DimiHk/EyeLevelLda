@@ -1,87 +1,112 @@
-<footer>
-  <!-- Render logo block at the top -->
-  {% for block in section.blocks %}
-    {% if block.type == 'logo' %}
-      {% render block %}
-    {% endif %}
-  {% endfor %}
+<footer class="custom-footer">
+  <div class="footer__row">
+    <div class="footer__logo-left">
+      <a href="{{ routes.root_url }}">
+        <img
+          class="footer__image"
+          src="{{ section.settings.logo_left | image_url }}"
+          alt="{{ shop.name }}"
+          loading="lazy"
+        >
+      </a>
+    </div>
 
-  <div class="footer__copyright">
-    Copyright © {{ 'now' | date: '%Y' }} Eyelevel Unipessoal, Lda - All Rights Reserved
+    <div class="footer__copyright">&copy; {{ 'now' | date: '%Y' }} Eyelevel Unipessoal, Lda - All Rights Reserved</div>
+
+    <div class="footer__logo-right">
+      {% if section.settings.logo_right %}
+        <img
+          class="footer__image"
+          src="{{ section.settings.logo_right | image_url }}"
+          alt="Partner logo"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
   </div>
-
-  <!-- Render logo block at the bottom -->
-  {% for block in section.blocks %}
-    {% if block.type == 'logo' %}
-      {% render block %}
-    {% endif %}
-  {% endfor %}
 </footer>
 
 {% stylesheet %}
-  footer {
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center;
-    align-items: center;
+  .custom-footer {
+    background-color: #333;
     padding: 20px;
-    background-color: #333333;
-  }
-
-  .footer__copyright {
     color: #fff;
-    font-size: 14px;
-    text-align: center;
-    margin: 20px 0; /* Add spacing around copyright */
   }
 
-  /* Ensure logo styling is included */
-  .header__logo {
+  .footer__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer__image {
     width: var(--logo-width-desktop);
     height: auto;
   }
 
+  .footer__logo-left,
+  .footer__logo-right {
+    flex: 0 0 auto;
+  }
+
+  .footer__copyright {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  /* CSS variables for dynamic logo sizing */
+  .custom-footer {
+    --logo-width-desktop: {{ section.settings.logo_width_desktop | default: 120 }}px;
+    --logo-width-mobile: {{ section.settings.logo_width_mobile | default: 80 }}px;
+  }
+
   @media (max-width: 749px) {
-    .header__logo {
+    .footer__image {
       width: var(--logo-width-mobile);
+    }
+
+    .footer__row {
+      flex-direction: column;
+      text-align: center;
     }
   }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "t:general.footer",
-  "blocks": [
+  "name": "Footer Section",
+  "settings": [
     {
-      "type": "logo",
-      "name": "t:general.logo",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "t:labels.logo_image"
-        },
-        {
-          "type": "range",
-          "id": "logo_width_desktop",
-          "label": "Desktop logo width (px)",
-          "min": 50,
-          "max": 600,
-          "step": 10,
-          "default": 200
-        },
-        {
-          "type": "range",
-          "id": "logo_width_mobile",
-          "label": "Mobile logo width (px)",
-          "min": 30,
-          "max": 400,
-          "step": 10,
-          "default": 150
-        }
-      ]
+      "type": "image_picker",
+      "id": "logo_left",
+      "label": "Left Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_right",
+      "label": "Right Image"
+    },
+    {
+      "type": "number",
+      "id": "logo_width_desktop",
+      "label": "Logo Width (Desktop in px)",
+      "default": 120
+    },
+    {
+      "type": "number",
+      "id": "logo_width_mobile",
+      "label": "Logo Width (Mobile in px)",
+      "default": 80
     }
   ],
-  "settings": []
+  "presets": [
+    {
+      "name": "Footer with Two Logos"
+    }
+  ]
 }
 {% endschema %}
