@@ -1,57 +1,87 @@
 <footer>
-  <div class="footer__copyright">
-    &copy;
-    {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-  </div>
-
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="footer__payment">
-    {% if section.settings.show_payment_icons %}
-      {% for type in shop.enabled_payment_types %}
-        {{ type | payment_type_svg_tag }}
-      {% endfor %}
+  <!-- Render logo block at the top -->
+  {% for block in section.blocks %}
+    {% if block.type == 'logo' %}
+      {% render block %}
     {% endif %}
+  {% endfor %}
+
+  <div class="footer__copyright">
+    Copyright © {{ 'now' | date: '%Y' }} Eyelevel Unipessoal, Lda - All Rights Reserved
   </div>
+
+  <!-- Render logo block at the bottom -->
+  {% for block in section.blocks %}
+    {% if block.type == 'logo' %}
+      {% render block %}
+    {% endif %}
+  {% endfor %}
 </footer>
 
 {% stylesheet %}
   footer {
     display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #333333;
   }
-  footer a {
-    text-decoration: none;
-    color: var(--color-foreground);
+
+  .footer__copyright {
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0; /* Add spacing around copyright */
   }
-  footer .footer__links,
-  footer .footer__payment {
-    display: flex;
-    gap: 1rem;
+
+  /* Ensure logo styling is included */
+  .header__logo {
+    width: var(--logo-width-desktop);
+    height: auto;
+  }
+
+  @media (max-width: 749px) {
+    .header__logo {
+      width: var(--logo-width-mobile);
+    }
   }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:general.footer",
-  "settings": [
+  "blocks": [
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_payment_icons",
-      "label": "t:labels.show_payment_icons",
-      "default": true
+      "type": "logo",
+      "name": "t:general.logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:labels.logo_image"
+        },
+        {
+          "type": "range",
+          "id": "logo_width_desktop",
+          "label": "Desktop logo width (px)",
+          "min": 50,
+          "max": 600,
+          "step": 10,
+          "default": 200
+        },
+        {
+          "type": "range",
+          "id": "logo_width_mobile",
+          "label": "Mobile logo width (px)",
+          "min": 30,
+          "max": 400,
+          "step": 10,
+          "default": 150
+        }
+      ]
     }
-  ]
+  ],
+  "settings": []
 }
 {% endschema %}
