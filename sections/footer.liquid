@@ -3,15 +3,15 @@
     <div class="footer__logo-left">
       <a href="{{ routes.root_url }}">
         <img
-          class="footer__image"
+          class="footer__image footer__image-left"
           src="{{ section.settings.logo_left | image_url }}"
           alt="{{ shop.name }}"
           loading="lazy"
-          width="{{ section.settings.logo_width_desktop }}"
+          width="{{ section.settings.logo_left_width_desktop }}"
           height="auto"
           style="
-            --logo-width-desktop: {{ section.settings.logo_width_desktop }}px;
-            --logo-width-mobile: {{ section.settings.logo_width_mobile }}px;
+            --logo-left-width-desktop: {{ section.settings.logo_left_width_desktop }}px;
+            --logo-left-width-mobile: {{ section.settings.logo_left_width_mobile }}px;
           "
         >
       </a>
@@ -22,15 +22,15 @@
     <div class="footer__logo-right">
       {% if section.settings.logo_right %}
         <img
-          class="footer__image"
+          class="footer__image footer__image-right"
           src="{{ section.settings.logo_right | image_url }}"
           alt="Partner logo"
           loading="lazy"
-          width="{{ section.settings.logo_width_desktop }}"
+          width="{{ section.settings.logo_right_width_desktop }}"
           height="auto"
           style="
-            --logo-width-desktop: {{ section.settings.logo_width_desktop }}px;
-            --logo-width-mobile: {{ section.settings.logo_width_mobile }}px;
+            --logo-right-width-desktop: {{ section.settings.logo_right_width_desktop }}px;
+            --logo-right-width-mobile: {{ section.settings.logo_right_width_mobile }}px;
           "
         >
       {% endif %}
@@ -53,11 +53,6 @@
     gap: 16px;
   }
 
-  .footer__image {
-    width: var(--logo-width-desktop);
-    height: auto;
-  }
-
   .footer__logo-left,
   .footer__logo-right {
     flex: 0 0 auto;
@@ -70,15 +65,27 @@
     color: #fff;
   }
 
-  /* CSS variables for dynamic logo sizing */
-  .custom-footer {
-    --logo-width-desktop: {{ section.settings.logo_width_desktop | default: 120 }}px;
-    --logo-width-mobile: {{ section.settings.logo_width_mobile | default: 80 }}px;
+  /* Default styles for logos (desktop) */
+  .footer__image-left {
+    width: var(--logo-left-width-desktop);
   }
 
+  .footer__image-right {
+    width: var(--logo-right-width-desktop);
+  }
+
+  .footer__image {
+    height: auto;
+  }
+
+  /* Responsive styles */
   @media (max-width: 749px) {
-    .footer__image {
-      width: var(--logo-width-mobile);
+    .footer__image-left {
+      width: var(--logo-left-width-mobile);
+    }
+
+    .footer__image-right {
+      width: var(--logo-right-width-mobile);
     }
 
     .footer__row {
@@ -98,20 +105,32 @@
       "label": "Left Logo"
     },
     {
+      "type": "number",
+      "id": "logo_left_width_desktop",
+      "label": "Left Logo Width (Desktop in px)",
+      "default": 120
+    },
+    {
+      "type": "number",
+      "id": "logo_left_width_mobile",
+      "label": "Left Logo Width (Mobile in px)",
+      "default": 80
+    },
+    {
       "type": "image_picker",
       "id": "logo_right",
       "label": "Right Image"
     },
     {
       "type": "number",
-      "id": "logo_width_desktop",
-      "label": "Logo Width (Desktop in px)",
+      "id": "logo_right_width_desktop",
+      "label": "Right Image Width (Desktop in px)",
       "default": 120
     },
     {
       "type": "number",
-      "id": "logo_width_mobile",
-      "label": "Logo Width (Mobile in px)",
+      "id": "logo_right_width_mobile",
+      "label": "Right Image Width (Mobile in px)",
       "default": 80
     }
   ],
