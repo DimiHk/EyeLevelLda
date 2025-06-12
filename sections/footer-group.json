@@ -13,10 +13,29 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "settings": {
-        "menu": "",
-        "show_payment_icons": true
-      }
+      "blocks": {
+        "logo_BH7nEg": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/logo.png",
+            "logo_width_desktop": 200,
+            "logo_width_mobile": 150
+          }
+        },
+        "logo_L4RjjH": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/logo.png",
+            "logo_width_desktop": 200,
+            "logo_width_mobile": 150
+          }
+        }
+      },
+      "block_order": [
+        "logo_BH7nEg",
+        "logo_L4RjjH"
+      ],
+      "settings": {}
     }
   },
   "order": [
