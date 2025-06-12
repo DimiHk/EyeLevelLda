@@ -15,7 +15,7 @@
       "type": "footer",
       "settings": {
         "logo_left": "shopify://shop_images/logo.png",
-        "logo_left_width_desktop": 120,
+        "logo_left_width_desktop": 160,
         "logo_left_width_mobile": 120,
         "logo_right": "shopify://shop_images/0.png",
         "logo_right_width_desktop": 50,
@@ -23,7 +23,5 @@
       }
     }
   },
-  "order": [
-    "footer"
-  ]
+  "order": ["footer"]
 }

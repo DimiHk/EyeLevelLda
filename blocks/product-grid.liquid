@@ -1,0 +1,202 @@
+{% comment %}
+  Product Grid Section - dynamic mapping of all products
+{% endcomment %}
+
+<section class="product-grid-section">
+  <div class="product-grid-wrapper">
+    {% paginate collections.all.products by 12 %}
+      <div class="product-grid">
+        {% for product in collections.all.products %}
+          <div class="product-card" data-product-id="{{ product.id }}">
+            <div class="product-main" role="button" tabindex="0" onclick="openModal({{ forloop.index0 }})">
+              <img
+                src="{{ product.featured_image | image_url }}"
+                alt="{{ product.title }}"
+                class="main-image"
+                loading="lazy"
+              >
+              <h3 class="product-title">{{ product.title }}</h3>
+            </div>
+            <div class="variant-thumbnails">
+              {% assign media_counter = 0 %}
+              {% for image in product.images %}
+                {% if image != product.featured_image %}
+                  {% assign media_counter = media_counter | plus: 1 %}
+                  <img
+                    src="{{ image | image_url: '100x100' }}"
+                    alt="Variant for {{ product.title }}"
+                    class="variant-thumb"
+                    loading="lazy"
+                  >
+                  {% if media_counter == 5 and product.images.size > 6 %}
+                    <div class="thumb-overflow">
+                      <span class="arrow-circle">→</span>
+                    </div>
+                    {% break %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="pagination">
+        {{ paginate | default_pagination }}
+      </div>
+    {% endpaginate %}
+  </div>
+
+  <div id="product-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <div class="modal-images"></div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .product-grid-section {
+    padding: 2rem;
+    background-color: #f9f9f9;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 749px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .product-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+
+  .product-main {
+    cursor: pointer;
+  }
+
+  .product-title {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .variant-thumbnails {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    position: relative;
+  }
+
+  .variant-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+
+  .thumb-overflow {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 40px;
+    width: 40px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .arrow-circle {
+    font-size: 1rem;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal.hidden {
+    display: none;
+  }
+
+  .modal-content {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .modal-images img {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  function openModal(index) {
+    const modal = document.getElementById('product-modal');
+    const productCards = document.querySelectorAll('.product-card');
+    const selectedProduct = productCards[index];
+    const imageElements = selectedProduct.querySelectorAll('img');
+
+    const modalImages = document.querySelector('.modal-images');
+    modalImages.innerHTML = '';
+
+    imageElements.forEach((img) => {
+      const clone = img.cloneNode();
+      modalImages.appendChild(clone);
+    });
+
+    modal.classList.remove('hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('product-modal').classList.add('hidden');
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Product Grid With Modal",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product Grid With Modal"
+    }
+  ]
+}
+{% endschema %}
