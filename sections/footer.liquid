@@ -7,6 +7,12 @@
           src="{{ section.settings.logo_left | image_url }}"
           alt="{{ shop.name }}"
           loading="lazy"
+          width="{{ section.settings.logo_width_desktop }}"
+          height="auto"
+          style="
+            --logo-width-desktop: {{ section.settings.logo_width_desktop }}px;
+            --logo-width-mobile: {{ section.settings.logo_width_mobile }}px;
+          "
         >
       </a>
     </div>
@@ -20,6 +26,12 @@
           src="{{ section.settings.logo_right | image_url }}"
           alt="Partner logo"
           loading="lazy"
+          width="{{ section.settings.logo_width_desktop }}"
+          height="auto"
+          style="
+            --logo-width-desktop: {{ section.settings.logo_width_desktop }}px;
+            --logo-width-mobile: {{ section.settings.logo_width_mobile }}px;
+          "
         >
       {% endif %}
     </div>

@@ -16,12 +16,10 @@
       "settings": {
         "logo_left": "shopify://shop_images/logo.png",
         "logo_right": "shopify://shop_images/logo.png",
-        "logo_width_desktop": 50,
+        "logo_width_desktop": 140,
         "logo_width_mobile": 80
       }
     }
   },
-  "order": [
-    "footer"
-  ]
+  "order": ["footer"]
 }
