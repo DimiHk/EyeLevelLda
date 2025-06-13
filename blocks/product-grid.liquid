@@ -4,7 +4,7 @@
 
 <section class="product-grid-section">
   <div class="product-grid-wrapper">
-    {% paginate collections.all.products by 12 %}
+    {% paginate collections.all.products by 6 %}
       <div class="product-grid">
         {% for product in collections.all.products %}
           <div class="product-card" data-product-id="{{ product.id }}">
@@ -14,44 +14,72 @@
                 alt="{{ product.title }}"
                 class="main-image"
                 loading="lazy"
+                id="main-image-{{ product.id }}"
               >
-              <h3 class="product-title">{{ product.title }}</h3>
+              <span class="product-title">{{ product.title }}</span>
             </div>
-            <div class="variant-thumbnails" data-product-id="{{ product.id }}">
-              {% assign media_counter = 0 %}
-              {% for image in product.images %}
-                {% assign media_counter = media_counter | plus: 1 %}
-                <img
-                  src="{{ image | image_url }}"
-                  alt="{{ product.title }} {% if image == product.featured_image %}Main Image{% else %}Variant{% endif %}"
-                  class="variant-thumb {% if image == product.featured_image %}selected{% endif %} {% if media_counter > section.settings.thumbnails_per_page %}hidden{% endif %}"
-                  loading="lazy"
-                  onmouseover="previewThumbnail('{{ product.id }}', '{{ image | image_url }}', this)"
-                  onclick="selectThumbnail('{{ product.id }}', '{{ image | image_url }}', this)"
-                  data-index="{{ media_counter }}"
-                >
-                {% if media_counter == section.settings.thumbnails_per_page %}
-                  {% assign max_thumbnails = section.settings.thumbnails_per_page | plus: 1 %}
-                  {% if product.images.size > max_thumbnails %}
-                    <div class="thumb-overflow right-arrow">
-                      <span class="arrow-circle" onclick="showNextThumbnails('{{ product.id }}')">→</span>
-                    </div>
-                  {% endif %}
-                  {% break %}
-                {% endif %}
-              {% endfor %}
-              {% if media_counter > section.settings.thumbnails_per_page %}
-                <div class="thumb-overflow left-arrow hidden">
-                  <span class="arrow-circle" onclick="showPrevThumbnails('{{ product.id }}')">←</span>
-                </div>
-              {% endif %}
+            <!-- Swiper wrapper for variant thumbnails -->
+            <div class="swiper variant-swiper-{{ product.id }}">
+              <div class="swiper-wrapper">
+                {% for image in product.images %}
+                  <div class="swiper-slide">
+                    <img
+                      src="{{ image | image_url }}"
+                      alt="{{ product.title }} Variant"
+                      class="variant-thumb {% if image == product.featured_image %}selected{% endif %}"
+                      loading="lazy"
+                      onmouseover="previewThumbnail('{{ product.id }}', '{{ image | image_url }}', this)"
+                      onclick="selectThumbnail('{{ product.id }}', '{{ image | image_url }}', this)"
+                    >
+                  </div>
+                {% endfor %}
+              </div>
             </div>
           </div>
         {% endfor %}
       </div>
+      <div class="custom-pagination">
+        {% if paginate.pages > 1 %}
+          <nav class="pagination-nav">
+            {% if paginate.previous %}
+              <a href="{{ paginate.previous.url }}" class="arrow prev" aria-label="Previous page">
+                <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.23913 9L4.70022 8.51061L1.24826 4.84679L15 4.84679V4.15459L1.24826 4.15459L4.70087 0.489386L4.23978 0L-9.53674e-07 4.50069L4.23913 9Z" fill="white"/>
+                </svg>
+              </a>
+            {% else %}
+              <span class="arrow prev disabled">
+                <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.23913 9L4.70022 8.51061L1.24826 4.84679L15 4.84679V4.15459L1.24826 4.15459L4.70087 0.489386L4.23978 0L-9.53674e-07 4.50069L4.23913 9Z" fill="white"/>
+                </svg>
+              </span>
+            {% endif %}
 
-      <div class="pagination">
-        {{ paginate | default_pagination }}
+            {% for part in paginate.parts %}
+              {% if part.is_link %}
+                <a href="{{ part.url }}" class="page-ball">{{ part.title }}</a>
+              {% elsif part.title == paginate.current_page %}
+                <span class="page-ball current">{{ part.title }}</span>
+              {% else %}
+                <span class="page-ball dots">{{ part.title }}</span>
+              {% endif %}
+            {% endfor %}
+
+            {% if paginate.next %}
+              <a href="{{ paginate.next.url }}" class="arrow next" aria-label="Next page">
+                <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.7609 0L10.2998 0.489386L13.7517 4.15321H0V4.84541H13.7517L10.2991 8.51061L10.7602 9L15 4.49931L10.7609 0Z" fill="white"/>
+                </svg>
+              </a>
+            {% else %}
+              <span class="arrow next disabled">
+                <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.7609 0L10.2998 0.489386L13.7517 4.15321H0V4.84541H13.7517L10.2991 8.51061L10.7602 9L15 4.49931L10.7609 0Z" fill="white"/>
+                </svg>
+              </span>
+            {% endif %}
+          </nav>
+        {% endif %}
       </div>
     {% endpaginate %}
   </div>
@@ -69,116 +97,255 @@
     gap: 2rem;
   }
 
-  @media (max-width: 749px) {
+  @media (max-width: 1024px) {
     .product-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (max-width: 479px) {
+  @media (max-width: 600px) {
     .product-grid {
       grid-template-columns: 1fr;
+    }
+
+    .main-image {
+      height: 220px;
+      object-fit: cover;
+      scale: 1.1;
+    }
+
+    .variant-thumb {
+      width: 48px;
+      height: 48px;
     }
   }
 
   .product-card {
     background: #fff;
-    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 1rem;
-  }
-
-  .product-main {
     position: relative;
+    justify-content: center;
+    align-items: center;
   }
 
   .main-image {
     width: 100%;
-    height: auto;
+    height: 250px;
+    max-width: none !important;
     object-fit: cover;
     border-radius: 4px;
-    transition: opacity 0.3s ease; /* Smooth image swap */
-    min-height: 500px;
-    max-height: 500px;
-    min-height: 500px;
-    max-height: 500px;
+    transition: opacity 0.3s ease;
   }
 
   .product-title {
-    margin-top: 0.5rem;
     font-size: 1rem;
     text-align: center;
     color: #333;
-  }
-
-  .variant-thumbnails {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 0.5rem;
-    justify-content: center;
-    margin-top: 0.5rem;
-    position: relative;
-    padding: 0 40px; /* Space for arrows */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
   .variant-thumb {
-    width: 30px;
-    height: 30px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
-    border-radius: 50%; /* Circular thumbnails like Revo */
-    cursor: pointer;
     opacity: 0.7;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.2s;
   }
 
   .variant-thumb:hover,
   .variant-thumb.selected {
     opacity: 1;
-    transform: scale(1.1); /* Slight scale on hover/selected */
-    border: 2px solid #007bff; /* Blue border for selected */
+    transform: scale(1.1);
+    border: 2px solid #007bff;
   }
 
-  .variant-thumb.hidden {
-    display: none;
+  .swiper {
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
-  .thumb-overflow {
-    position: absolute;
-    height: 30px;
-    width: 30px;
-    background: #fff;
+  .swiper-slide {
+    width: auto;
+    height: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  @media (max-width: 460px) {
+    .main-image {
+      height: 240px;
+      width: 100%;
+      object-fit: fill;
+      scale: 1.2;
+    }
+
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .variant-thumb {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .custom-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pagination-nav {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    max-width: 100%;
     justify-content: center;
+  }
+
+  .page-ball.dots {
+    color: #000 !important;
+  }
+
+  /* Dots (balls) */
+  .page-ball {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    top: 50%;
-    transform: translateY(-50%);
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: 500;
   }
 
-  .thumb-overflow.left-arrow {
-    left: 0;
+  .page-ball:hover {
+    background-color: #fff;
+    color: #000;
+    border: 0.5px solid #000;
+    transform: scale(1.05);
   }
 
-  .thumb-overflow.right-arrow {
-    right: 0;
+  .page-ball.current {
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    border: 0.5px solid #000;
   }
 
-  .thumb-overflow.hidden {
-    display: none;
+  .page-ball.dots {
+    background: transparent;
+    box-shadow: none;
+    cursor: default;
+    pointer-events: none;
   }
 
-  .arrow-circle {
-    font-size: 0.8rem;
-    color: #333;
+  /* Arrows */
+  .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    background-color: #000;
+    border-radius: 6px;
+    color: #fff;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+  }
+
+  .arrow:hover {
+    background-color: #555;
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  .arrow.disabled {
+    background-color: #333;
+    color: #777;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .arrow.prev {
+    margin-right: 0.4rem;
+  }
+
+  .arrow.next {
+    margin-left: 0.4rem;
+  }
+
+  /* 📱 Mobile Enhancements */
+  @media (max-width: 480px) {
+    .custom-pagination {
+      padding: 0.5rem;
+    }
+
+    .pagination-nav {
+      gap: 0.3rem;
+    }
+
+    .page-ball,
+    .arrow {
+      width: 28px;
+      height: 28px;
+      font-size: 12px;
+    }
+
+    .page-ball.current {
+      font-size: 13px;
+    }
+
+    .arrow {
+      border-radius: 4px;
+    }
   }
 {% endstylesheet %}
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.swiper').forEach((swiperEl) => {
+      const productId = swiperEl.classList.value.match(/variant-swiper-(\d+)/)?.[1];
+      if (!productId) return;
+
+      new Swiper(`.variant-swiper-${productId}`, {
+        slidesPerView: 'auto',
+        spaceBetween: 0,
+        freeMode: true,
+      });
+    });
+  });
+
+  function previewThumbnail(productId, imageUrl, el) {
+    document.getElementById(`main-image-${productId}`).src = imageUrl;
+  }
+
+  function selectThumbnail(productId, imageUrl, el) {
+    const thumbs = el.closest('.swiper').querySelectorAll('.variant-thumb');
+    thumbs.forEach((img) => img.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById(`main-image-${productId}`).src = imageUrl;
+  }
+</script>
+
 {% schema %}
 {
-  "name": "Product Grid With Modal",
+  "name": "Product Grid",
   "settings": [
     {
       "type": "range",
@@ -187,12 +354,12 @@
       "min": 3,
       "max": 10,
       "step": 1,
-      "default": 4
+      "default": 3
     }
   ],
   "presets": [
     {
-      "name": "Product Grid With Modal"
+      "name": "Product Grid"
     }
   ]
 }
