@@ -19,8 +19,8 @@
           "name": "t:general.logo_image",
           "settings": {
             "image": "shopify://shop_images/logo.png",
-            "logo_width_desktop": 200,
-            "logo_width_mobile": 150
+            "logo_width_desktop": 180,
+            "logo_width_mobile": 140
           },
           "blocks": {}
         },
