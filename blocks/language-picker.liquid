@@ -5,7 +5,9 @@
     <button type="button" class="language-picker__button" id="toggle-language-dropdown">
       {{ 'icon-world.svg' | inline_asset_content }}
       <span class="language-picker__label">{{ localization.language.endonym_name | capitalize }}</span>
-      {{ 'icon-arrow-down.svg' | inline_asset_content }}
+      <span class="language-picker__arrow">
+        {{ 'icon-arrow-down.svg' | inline_asset_content }}
+      </span>
     </button>
 
     <ul class="language-picker__dropdown" id="language-dropdown">
@@ -20,15 +22,20 @@
 
 {% javascript %}
   document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('toggle-language-dropdown');
+    const dropdown = document.getElementById('language-dropdown');
+
     function toggleLanguageDropdown() {
-      const dropdown = document.getElementById('language-dropdown');
-      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+      const isOpen = dropdown.classList.contains('open');
+      dropdown.classList.toggle('open', !isOpen);
+      button.classList.toggle('active', !isOpen);
     }
 
-    const button = document.getElementById('toggle-language-dropdown');
-
     if (button) {
-      button.addEventListener('click', toggleLanguageDropdown);
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleLanguageDropdown();
+      });
     }
 
     document.querySelectorAll('#language-dropdown .language-picker__dropdown-item').forEach((item) => {
@@ -40,10 +47,9 @@
     });
 
     document.addEventListener('click', (e) => {
-      const dropdown = document.getElementById('language-dropdown');
-      const button = document.querySelector('.language-picker__button');
       if (!button.contains(e.target)) {
-        dropdown.style.display = 'none';
+        dropdown.classList.remove('open');
+        button.classList.remove('active');
       }
     });
   });
@@ -62,10 +68,20 @@
     border: none;
     cursor: pointer;
     font-weight: var(--font-light);
+    transition: border-color 0.3s ease;
   }
 
   .language-picker__button:hover {
     border-color: #888;
+  }
+
+  .language-picker__arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .language-picker__button.active .language-picker__arrow {
+    transform: rotate(180deg);
   }
 
   .language-picker__dropdown {
@@ -77,24 +93,46 @@
     border-radius: 6px;
     list-style: none;
     padding: 0;
-    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 1000;
     min-width: 140px;
+  }
+
+  .language-picker__dropdown.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .language-picker__label {
+    font-size: 0.785rem;
   }
 
   .language-picker__dropdown-item {
     padding: 10px;
     cursor: pointer;
     font-weight: var(--font-light);
+    font-size: 0.785rem;
   }
 
   .language-picker__dropdown-item:hover {
     background-color: #f0f0f0;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (min-width: 768px) {
     .language-picker__button {
       padding: 6px 10px;
+    }
+
+    .language-picker__label {
+      font-size: 0.875rem;
+    }
+
+    .language-picker__dropdown-item {
+      font-size: 0.875rem;
     }
   }
 {% endstylesheet %}

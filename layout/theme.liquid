@@ -13,33 +13,33 @@
     {% sections 'header-group' %}
     {{ content_for_layout }}
     {% sections 'footer-group' %}
-    <script>
-      let currentThumbnailPage = {};
-      let selectedImageSrc = {};
 
-      function previewThumbnail(productId, imageSrc, element) {
-        // Update main image on hover
-        const productCard = document.querySelector(`.product-card[data-product-id="${productId}"]`);
-        const mainImage = productCard.querySelector('.main-image');
-        mainImage.src = imageSrc;
-        mainImage.alt = element.alt;
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.swiper').forEach((swiperEl) => {
+          const productId = swiperEl.classList.value.match(/variant-swiper-(\d+)/)?.[1];
+          if (!productId) return;
+
+          new Swiper(`.variant-swiper-${productId}`, {
+            slidesPerView: 'auto',
+            spaceBetween: 0,
+            freeMode: true,
+          });
+        });
+      });
+
+      function previewThumbnail(productId, imageUrl, el) {
+        const thumbs = el.closest('.swiper').querySelectorAll('.variant-thumb');
+        thumbs.forEach((img) => img.classList.remove('selected'));
+        el.classList.add('selected');
+        document.getElementById(`main-image-${productId}`).src = imageUrl;
       }
 
-      function selectThumbnail(productId, imageSrc, element) {
-        // Update main image and selected state on click
-        const productCard = document.querySelector(`.product-card[data-product-id="${productId}"]`);
-        const mainImage = productCard.querySelector('.main-image');
-        mainImage.src = imageSrc;
-        mainImage.alt = element.alt;
-
-        // Update selected state in thumbnails
-        const variantThumbs = productCard.querySelectorAll('.variant-thumb');
-        variantThumbs.forEach((thumb) => {
-          thumb.classList.toggle('selected', thumb.src === imageSrc);
-        });
-
-        // Store selected image
-        selectedImageSrc[productId] = imageSrc;
+      function selectThumbnail(productId, imageUrl, el) {
+        const thumbs = el.closest('.swiper').querySelectorAll('.variant-thumb');
+        thumbs.forEach((img) => img.classList.remove('selected'));
+        el.classList.add('selected');
+        document.getElementById(`main-image-${productId}`).src = imageUrl;
       }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>

@@ -13,6 +13,8 @@
     position: relative;
     aspect-ratio: 16 / 9;
     overflow: hidden;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
   }
 
   .image__container img {
@@ -26,6 +28,13 @@
   .image__container img.loaded {
     filter: blur(0px);
     opacity: 1;
+  }
+
+  @media screen and (min-width: 768px) {
+    .image__container {
+      border-bottom-right-radius: 80px;
+      border-bottom-left-radius: 80px;
+    }
   }
 {% endstylesheet %}
 

@@ -1,28 +1,32 @@
 <div
   class="group {{ block.settings.layout_direction }}{% if block.settings.wrap %} group--wrap{% endif %}"
   style="
-    --padding: {{ block.settings.padding }}px;
-    --margin: {{ block.settings.margin }}px;
-    --alignment: {{ block.settings.alignment }};
-    --justify: {{ block.settings.justify }};
-    --background: {{ block.settings.background }};
-    --gap-mobile: {{ block.settings.gap_mobile }}px;
-    --gap-tablet: {{ block.settings.gap_tablet }}px;
-    --gap-desktop: {{ block.settings.gap_desktop }}px;
-    --min-height: {{ block.settings.min_height }}px;
-    background-color: var(--background);
-    padding: var(--padding);
-    margin: var(--margin);
-    justify-content: var(--justify);
-    align-items: var(--alignment);
-    min-height: var(--min-height);
+    background-color: {{ block.settings.background }};
+    justify-content: {{ block.settings.justify }};
+    align-items: {{ block.settings.alignment }};
+    min-height: {{ block.settings.min_height }}px;
+    width: {{ block.settings.width }};
+    height: {{ block.settings.height }};
+    top: {{ block.settings.top }};
+    bottom: {{ block.settings.bottom }};
+    left: {{ block.settings.left }};
+    right: {{ block.settings.right }};
+
+    padding-top: {{ block.settings.padding_top_mobile }};
+    padding-bottom: {{ block.settings.padding_bottom_mobile }};
+    padding-left: {{ block.settings.padding_left_mobile }};
+    padding-right: {{ block.settings.padding_right_mobile }};
+    margin-top: {{ block.settings.margin_top_mobile }};
+    margin-bottom: {{ block.settings.margin_bottom_mobile }};
+    margin-left: {{ block.settings.margin_left_mobile }};
+    margin-right: {{ block.settings.margin_right_mobile }};
   "
   {{ block.shopify_attributes }}
 >
   {% content_for 'blocks' %}
 </div>
 
-{% stylesheet %}
+{% style %}
   .group {
     display: flex;
     flex-wrap: nowrap;
@@ -35,18 +39,6 @@
     flex-wrap: wrap;
   }
 
-  @media screen and (min-width: 768px) {
-    .group {
-      gap: var(--gap-tablet);
-    }
-  }
-
-  @media screen and (min-width: 1024px) {
-    .group {
-      gap: var(--gap-desktop);
-    }
-  }
-
   .group--horizontal {
     flex-direction: row;
   }
@@ -54,39 +46,73 @@
   .group--vertical {
     flex-direction: column;
   }
-{% endstylesheet %}
+
+  @media screen and (min-width: 768px) {
+    .group {
+      gap: var(--gap-tablet);
+    }
+
+    .group {
+      padding-top: {{ block.settings.padding_top_tablet }};
+      padding-bottom: {{ block.settings.padding_bottom_tablet }};
+      padding-left: {{ block.settings.padding_left_tablet }};
+      padding-right: {{ block.settings.padding_right_tablet }};
+      margin-top: {{ block.settings.margin_top_tablet }};
+      margin-bottom: {{ block.settings.margin_bottom_tablet }};
+      margin-left: {{ block.settings.margin_left_tablet }};
+      margin-right: {{ block.settings.margin_right_tablet }};
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .group {
+      gap: var(--gap-desktop);
+    }
+
+    .group {
+      padding-top: {{ block.settings.padding_top_desktop }};
+      padding-bottom: {{ block.settings.padding_bottom_desktop }};
+      padding-left: {{ block.settings.padding_left_desktop }};
+      padding-right: {{ block.settings.padding_right_desktop }};
+      margin-top: {{ block.settings.margin_top_desktop }};
+      margin-bottom: {{ block.settings.margin_bottom_desktop }};
+      margin-left: {{ block.settings.margin_left_desktop }};
+      margin-right: {{ block.settings.margin_right_desktop }};
+    }
+  }
+{% endstyle %}
 
 {% schema %}
 {
-  "name": "t:general.bar_group",
+  "name": "Responsive Group Layout",
   "blocks": [{ "type": "@theme" }],
   "settings": [
     {
       "type": "select",
       "id": "layout_direction",
-      "label": "t:labels.layout_direction",
+      "label": "Layout Direction",
       "default": "group--vertical",
       "options": [
-        { "value": "group--horizontal", "label": "t:options.direction.horizontal" },
-        { "value": "group--vertical", "label": "t:options.direction.vertical" }
+        { "value": "group--horizontal", "label": "Horizontal" },
+        { "value": "group--vertical", "label": "Vertical" }
       ]
     },
     {
       "type": "select",
       "id": "alignment",
-      "label": "t:labels.alignment",
+      "label": "Alignment",
       "default": "flex-start",
       "options": [
-        { "value": "flex-start", "label": "t:options.alignment.left" },
-        { "value": "center", "label": "t:options.alignment.center" },
-        { "value": "flex-end", "label": "t:options.alignment.right" },
+        { "value": "flex-start", "label": "Start" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "End" },
         { "value": "stretch", "label": "Stretch" }
       ]
     },
     {
       "type": "select",
       "id": "justify",
-      "label": "t:labels.justify_content",
+      "label": "Justify Content",
       "default": "space-between",
       "options": [
         { "value": "flex-start", "label": "Start" },
@@ -98,25 +124,12 @@
       ]
     },
     {
-      "type": "range",
-      "id": "padding",
-      "label": "t:labels.padding",
-      "default": 0,
-      "min": 0,
-      "max": 200,
-      "step": 2,
-      "unit": "px"
+      "type": "checkbox",
+      "id": "wrap",
+      "label": "Allow wrapping",
+      "default": true
     },
-    {
-      "type": "range",
-      "id": "margin",
-      "label": "t:labels.margin",
-      "default": 0,
-      "min": 0,
-      "max": 200,
-      "step": 2,
-      "unit": "px"
-    },
+
     {
       "type": "range",
       "id": "gap_mobile",
@@ -147,12 +160,7 @@
       "step": 2,
       "unit": "px"
     },
-    {
-      "type": "checkbox",
-      "id": "wrap",
-      "label": "Allow wrapping",
-      "default": true
-    },
+
     {
       "type": "range",
       "id": "min_height",
@@ -163,47 +171,58 @@
       "step": 10,
       "unit": "px"
     },
-    {
-      "type": "text",
-      "id": "background",
-      "label": "t:labels.background_color",
-      "default": "rgba(0, 0, 0, 0.8)",
-      "info": "Enter any valid CSS color: hex, rgba(), hsla(), etc."
-    }
+    { "type": "text", "id": "background", "label": "Background color", "default": "rgba(0, 0, 0, 0.8)" },
+
+    // Responsive Padding
+    { "type": "text", "id": "padding_top_mobile", "label": "Padding Top (Mobile)", "default": "0px" },
+    { "type": "text", "id": "padding_top_tablet", "label": "Padding Top (Tablet)", "default": "0px" },
+    { "type": "text", "id": "padding_top_desktop", "label": "Padding Top (Desktop)", "default": "0px" },
+
+    { "type": "text", "id": "padding_bottom_mobile", "label": "Padding Bottom (Mobile)", "default": "0px" },
+    { "type": "text", "id": "padding_bottom_tablet", "label": "Padding Bottom (Tablet)", "default": "0px" },
+    { "type": "text", "id": "padding_bottom_desktop", "label": "Padding Bottom (Desktop)", "default": "0px" },
+
+    { "type": "text", "id": "padding_left_mobile", "label": "Padding Left (Mobile)", "default": "0px" },
+    { "type": "text", "id": "padding_left_tablet", "label": "Padding Left (Tablet)", "default": "0px" },
+    { "type": "text", "id": "padding_left_desktop", "label": "Padding Left (Desktop)", "default": "0px" },
+
+    { "type": "text", "id": "padding_right_mobile", "label": "Padding Right (Mobile)", "default": "0px" },
+    { "type": "text", "id": "padding_right_tablet", "label": "Padding Right (Tablet)", "default": "0px" },
+    { "type": "text", "id": "padding_right_desktop", "label": "Padding Right (Desktop)", "default": "0px" },
+
+    // Responsive Margin
+    { "type": "text", "id": "margin_top_mobile", "label": "Margin Top (Mobile)", "default": "0px" },
+    { "type": "text", "id": "margin_top_tablet", "label": "Margin Top (Tablet)", "default": "0px" },
+    { "type": "text", "id": "margin_top_desktop", "label": "Margin Top (Desktop)", "default": "0px" },
+
+    { "type": "text", "id": "margin_bottom_mobile", "label": "Margin Bottom (Mobile)", "default": "0px" },
+    { "type": "text", "id": "margin_bottom_tablet", "label": "Margin Bottom (Tablet)", "default": "0px" },
+    { "type": "text", "id": "margin_bottom_desktop", "label": "Margin Bottom (Desktop)", "default": "0px" },
+
+    { "type": "text", "id": "margin_left_mobile", "label": "Margin Left (Mobile)", "default": "0px" },
+    { "type": "text", "id": "margin_left_tablet", "label": "Margin Left (Tablet)", "default": "0px" },
+    { "type": "text", "id": "margin_left_desktop", "label": "Margin Left (Desktop)", "default": "0px" },
+
+    { "type": "text", "id": "margin_right_mobile", "label": "Margin Right (Mobile)", "default": "0px" },
+    { "type": "text", "id": "margin_right_tablet", "label": "Margin Right (Tablet)", "default": "0px" },
+    { "type": "text", "id": "margin_right_desktop", "label": "Margin Right (Desktop)", "default": "0px" },
+
+    { "type": "text", "id": "width", "label": "Width", "default": "100%" },
+    { "type": "text", "id": "height", "label": "Height", "default": "auto" },
+    { "type": "text", "id": "top", "label": "Top", "default": "auto" },
+    { "type": "text", "id": "bottom", "label": "Bottom", "default": "auto" },
+    { "type": "text", "id": "left", "label": "Left", "default": "auto" },
+    { "type": "text", "id": "right", "label": "Right", "default": "auto" }
   ],
   "presets": [
     {
-      "name": "t:general.column",
-      "category": "t:general.layout",
+      "name": "Responsive Group",
+      "category": "Layout",
       "settings": {
         "layout_direction": "group--vertical",
         "alignment": "flex-start",
         "justify": "space-between",
-        "padding": 0,
-        "margin": 0,
-        "gap_mobile": 8,
-        "gap_tablet": 12,
-        "gap_desktop": 16,
-        "wrap": true,
-        "min_height": 0,
-        "background": "#ffffff"
-      }
-    },
-    {
-      "name": "t:general.row",
-      "category": "t:general.layout",
-      "settings": {
-        "layout_direction": "group--horizontal",
-        "alignment": "center",
-        "justify": "space-between",
-        "padding": 0,
-        "margin": 0,
-        "gap_mobile": 8,
-        "gap_tablet": 12,
-        "gap_desktop": 16,
-        "wrap": true,
-        "min_height": 0,
-        "background": "#ffffff"
+        "wrap": true
       }
     }
   ]

@@ -90,6 +90,10 @@
     padding: 2rem;
   }
 
+  .product-main {
+    width: 100%;
+  }
+
   .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -107,12 +111,6 @@
       grid-template-columns: 1fr;
     }
 
-    .main-image {
-      height: 220px;
-      object-fit: cover;
-      scale: 1.1;
-    }
-
     .variant-thumb {
       width: 48px;
       height: 48px;
@@ -120,11 +118,13 @@
   }
 
   .product-card {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    padding: 1rem;
     position: relative;
-    justify-content: center;
     align-items: center;
+    gap: 0.25rem;
+    padding: 5px;
   }
 
   .main-image {
@@ -141,7 +141,7 @@
     text-align: center;
     color: #333;
     position: absolute;
-    top: 0;
+    top: 15px;
     left: 0;
     right: 0;
   }
@@ -165,25 +165,15 @@
 
   .swiper {
     position: relative;
-    padding-top: 10px;
-    padding-bottom: 10px;
   }
 
   .swiper-slide {
     width: auto;
     height: auto;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 5px;
   }
 
   @media (max-width: 460px) {
-    .main-image {
-      height: 320px;
-      width: 100%;
-      object-fit: contain;
-      scale: 1.2;
-    }
-
     .product-grid {
       grid-template-columns: 1fr;
     }
@@ -314,32 +304,6 @@
     }
   }
 {% endstylesheet %}
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.swiper').forEach((swiperEl) => {
-      const productId = swiperEl.classList.value.match(/variant-swiper-(\d+)/)?.[1];
-      if (!productId) return;
-
-      new Swiper(`.variant-swiper-${productId}`, {
-        slidesPerView: 'auto',
-        spaceBetween: 0,
-        freeMode: true,
-      });
-    });
-  });
-
-  function previewThumbnail(productId, imageUrl, el) {
-    document.getElementById(`main-image-${productId}`).src = imageUrl;
-  }
-
-  function selectThumbnail(productId, imageUrl, el) {
-    const thumbs = el.closest('.swiper').querySelectorAll('.variant-thumb');
-    thumbs.forEach((img) => img.classList.remove('selected'));
-    el.classList.add('selected');
-    document.getElementById(`main-image-${productId}`).src = imageUrl;
-  }
-</script>
 
 {% schema %}
 {
