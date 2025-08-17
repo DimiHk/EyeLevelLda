@@ -1,24 +1,24 @@
-<form method="post" action="{{ localization.language.switch_url }}" id="LanguageForm">
-  <input type="hidden" name="language_code" id="SelectedLanguageCode">
+<div class="language-picker__container" id="language-picker">
+  <button type="button" class="language-picker__button" id="toggle-language-dropdown">
+    {{ 'icon-world.svg' | inline_asset_content }}
+    <span class="language-picker__label">{{ localization.language.endonym_name | capitalize }}</span>
+    <span class="language-picker__arrow">
+      {{ 'icon-arrow-down.svg' | inline_asset_content }}
+    </span>
+  </button>
 
-  <div class="language-picker__container" id="language-picker">
-    <button type="button" class="language-picker__button" id="toggle-language-dropdown">
-      {{ 'icon-world.svg' | inline_asset_content }}
-      <span class="language-picker__label">{{ localization.language.endonym_name | capitalize }}</span>
-      <span class="language-picker__arrow">
-        {{ 'icon-arrow-down.svg' | inline_asset_content }}
-      </span>
-    </button>
-
-    <ul class="language-picker__dropdown" id="language-dropdown">
-      {% for language in localization.available_languages %}
-        <li class="language-picker__dropdown-item" data-lang-code="{{ language.iso_code }}">
-          {{ language.endonym_name | capitalize }}
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-</form>
+  <ul class="language-picker__dropdown" id="language-dropdown">
+    {% for language in localization.available_languages %}
+      <li
+        class="language-picker__dropdown-item"
+        data-lang-code="{{ language.iso_code }}"
+        data-switch-url="{{ localization.language.switch_url }}/{{ language.iso_code }}"
+      >
+        {{ language.endonym_name | capitalize }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
 
 {% javascript %}
   document.addEventListener('DOMContentLoaded', () => {
@@ -40,9 +40,9 @@
 
     document.querySelectorAll('#language-dropdown .language-picker__dropdown-item').forEach((item) => {
       item.addEventListener('click', () => {
-        const langCode = item.getAttribute('data-lang-code');
-        document.getElementById('SelectedLanguageCode').value = langCode;
-        document.getElementById('LanguageForm').submit();
+        const switchUrl = item.getAttribute('data-switch-url');
+        // this will reload the page with the selected language
+        window.location.href = switchUrl;
       });
     });
 
