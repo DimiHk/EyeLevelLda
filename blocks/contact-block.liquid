@@ -12,12 +12,14 @@
 
 <div class="contact-block">
   <div class="contact-header-container">
-    <span class="contact-title">Contact Us</span>
+    <span class="contact-title">{{ 'contact.title' | t }}</span>
   </div>
+
   {% form 'contact', id: 'contact-form', class: 'contact-form' %}
     {% if form.posted_successfully? %}
-      <p class="form-success">Thank you for your message! We'll get back to you soon.</p>
+      <p class="form-success">{{ 'contact.success_message' | t }}</p>
     {% endif %}
+
     {% if form.errors %}
       <div class="form-errors">
         {% for field in form.errors %}
@@ -27,49 +29,38 @@
     {% endif %}
 
     <div class="form-field">
-      <label for="contact-name">Full Name <span class="required-asterisk">*</span></label>
-      <input
-        type="text"
-        id="contact-name"
-        name="contact[name]"
-        required
-        value="{{ form.name }}"
+      <label for="contact-name">
+        {{- 'contact.full_name' | t }}
+        <span class="required-asterisk">*</span></label
       >
+      <input type="text" id="contact-name" name="contact[name]" required value="{{ form.name }}">
     </div>
 
     <div class="form-field">
-      <label for="contact-email">Email <span class="required-asterisk">*</span></label>
-      <input
-        type="email"
-        id="contact-email"
-        name="contact[email]"
-        required
-        value="{{ form.email }}"
+      <label for="contact-email">
+        {{- 'contact.email' | t }}
+        <span class="required-asterisk">*</span></label
       >
+      <input type="email" id="contact-email" name="contact[email]" required value="{{ form.email }}">
     </div>
 
     <div class="form-field">
-      <label for="contact-subject">Subject <span class="required-asterisk">*</span></label>
-      <input
-        type="text"
-        id="contact-subject"
-        name="contact[subject]"
-        required
-        value="{{ form.subject }}"
+      <label for="contact-subject">
+        {{- 'contact.subject' | t }}
+        <span class="required-asterisk">*</span></label
       >
+      <input type="text" id="contact-subject" name="contact[subject]" required value="{{ form.subject }}">
     </div>
 
     <div class="form-field">
-      <label for="contact-message">Message <span class="required-asterisk">*</span> </label>
-      <textarea
-        id="contact-message"
-        rows="6"
-        name="contact[body]"
-        required
-      >{{ form.body }}</textarea>
+      <label for="contact-message">
+        {{- 'contact.message' | t }}
+        <span class="required-asterisk">*</span></label
+      >
+      <textarea id="contact-message" rows="6" name="contact[body]" required>{{ form.body }}</textarea>
     </div>
 
-    <button type="submit" class="send-button">Send</button>
+    <button type="submit" class="send-button">{{ 'contact.send_button' | t }}</button>
   {% endform %}
 </div>
 
