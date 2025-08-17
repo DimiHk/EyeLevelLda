@@ -9,11 +9,8 @@
 
   <ul class="language-picker__dropdown" id="language-dropdown">
     {% for language in localization.available_languages %}
-      <li
-        class="language-picker__dropdown-item"
-        data-lang-code="{{ language.iso_code }}"
-        data-switch-url="{{ localization.language.switch_url }}/{{ language.iso_code }}"
-      >
+      {% assign short_code = language.iso_code | split: '-' | first %}
+      <li class="language-picker__dropdown-item" data-lang-code="{{ short_code }}">
         {{ language.endonym_name | capitalize }}
       </li>
     {% endfor %}
@@ -40,9 +37,9 @@
 
     document.querySelectorAll('#language-dropdown .language-picker__dropdown-item').forEach((item) => {
       item.addEventListener('click', () => {
-        const switchUrl = item.getAttribute('data-switch-url');
-        // this will reload the page with the selected language
-        window.location.href = switchUrl;
+        const langCode = item.getAttribute('data-lang-code');
+        const url = langCode === 'en' ? '/' : '/' + langCode;
+        window.location.href = url;
       });
     });
 
