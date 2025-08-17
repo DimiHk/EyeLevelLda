@@ -67,7 +67,7 @@
                 "alignment_mobile": "center",
                 "alignment_tablet": "center",
                 "alignment_desktop": "center",
-                "font_size_mobile": "0.560rem",
+                "font_size_mobile": "0.75rem",
                 "font_size_tablet": "1rem",
                 "font_size_desktop": "1rem",
                 "font_weight_mobile": "400",
@@ -95,14 +95,10 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "text_cxEqRw"
-          ]
+          "block_order": ["text_cxEqRw"]
         }
       },
-      "block_order": [
-        "bar_GTdRby"
-      ],
+      "block_order": ["bar_GTdRby"],
       "settings": {}
     },
     "custom_section_eNJe8L": {
@@ -158,15 +154,13 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "image_video_iRwBJC"
-          ]
+          "block_order": ["image_video_iRwBJC"]
         }
       },
-      "block_order": [
-        "bar_7bTQez"
-      ],
-      "settings": {}
+      "block_order": ["bar_7bTQez"],
+      "settings": {
+        "background_image": "shopify://shop_images/young-people-having-fun-white-party.jpg"
+      }
     },
     "custom_section_fw38Wh": {
       "type": "custom-section",
@@ -222,7 +216,7 @@
                 "alignment_mobile": "center",
                 "alignment_tablet": "center",
                 "alignment_desktop": "center",
-                "font_size_mobile": "1.275rem",
+                "font_size_mobile": "1.5rem",
                 "font_size_tablet": "2rem",
                 "font_size_desktop": "2rem",
                 "font_weight_mobile": "500",
@@ -250,9 +244,7 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "text_4t3fYa"
-          ]
+          "block_order": ["text_4t3fYa"]
         },
         "product_grid_TM7fEX": {
           "type": "product-grid",
@@ -263,10 +255,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "bar_VgfKjy",
-        "product_grid_TM7fEX"
-      ],
+      "block_order": ["bar_VgfKjy", "product_grid_TM7fEX"],
       "settings": {}
     },
     "custom_section_J6KjYK": {
@@ -323,7 +312,7 @@
                 "alignment_mobile": "center",
                 "alignment_tablet": "center",
                 "alignment_desktop": "center",
-                "font_size_mobile": "0.560rem",
+                "font_size_mobile": "0.575rem",
                 "font_size_tablet": "1rem",
                 "font_size_desktop": "1rem",
                 "font_weight_mobile": "300",
@@ -347,21 +336,6 @@
                 "margin_mobile": "0",
                 "margin_tablet": "0",
                 "margin_desktop": "0"
-              },
-              "blocks": {}
-            },
-            "stroke_KhpUFC": {
-              "type": "stroke",
-              "settings": {
-                "width_mobile": "0.5px",
-                "width_tablet": "0.5px",
-                "width_desktop": "0.5px",
-                "height_mobile": "40px",
-                "height_tablet": "40px",
-                "height_desktop": "40px",
-                "color_mobile": "#ffffff",
-                "color_tablet": "#ffffff",
-                "color_desktop": "#ffffff"
               },
               "blocks": {}
             },
@@ -372,7 +346,7 @@
                 "alignment_mobile": "center",
                 "alignment_tablet": "center",
                 "alignment_desktop": "center",
-                "font_size_mobile": "0.560rem",
+                "font_size_mobile": "0.575rem",
                 "font_size_tablet": "1rem",
                 "font_size_desktop": "1rem",
                 "font_weight_mobile": "300",
@@ -399,21 +373,6 @@
               },
               "blocks": {}
             },
-            "stroke_QypxXi": {
-              "type": "stroke",
-              "settings": {
-                "width_mobile": "0.5px",
-                "width_tablet": "0.5px",
-                "width_desktop": "0.5px",
-                "height_mobile": "40px",
-                "height_tablet": "40px",
-                "height_desktop": "40px",
-                "color_mobile": "#ffffff",
-                "color_tablet": "#ffffff",
-                "color_desktop": "#ffffff"
-              },
-              "blocks": {}
-            },
             "text_QpLMpx": {
               "type": "text",
               "settings": {
@@ -421,7 +380,7 @@
                 "alignment_mobile": "center",
                 "alignment_tablet": "center",
                 "alignment_desktop": "center",
-                "font_size_mobile": "0.560rem",
+                "font_size_mobile": "0.575rem",
                 "font_size_tablet": "1rem",
                 "font_size_desktop": "1rem",
                 "font_weight_mobile": "300",
@@ -449,18 +408,10 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "text_xXkX7a",
-            "stroke_KhpUFC",
-            "text_e6yMFU",
-            "stroke_QypxXi",
-            "text_QpLMpx"
-          ]
+          "block_order": ["text_xXkX7a", "text_e6yMFU", "text_QpLMpx"]
         }
       },
-      "block_order": [
-        "bar_38ixJJ"
-      ],
+      "block_order": ["bar_38ixJJ"],
       "settings": {}
     },
     "custom_section_4gVwjp": {
@@ -579,15 +530,10 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "text_mkcxER",
-            "text_WJHFmm"
-          ]
+          "block_order": ["text_mkcxER", "text_WJHFmm"]
         }
       },
-      "block_order": [
-        "bar_3DwbpP"
-      ],
+      "block_order": ["bar_3DwbpP"],
       "settings": {}
     },
     "custom_section_P4Ggrn": {
@@ -599,9 +545,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "before_and_after_eXbbyr"
-      ],
+      "block_order": ["before_and_after_eXbbyr"],
       "settings": {}
     },
     "custom_section_xeAxkR": {
@@ -617,9 +561,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "card_swipper_nc8jkk"
-      ],
+      "block_order": ["card_swipper_nc8jkk"],
       "settings": {}
     },
     "custom_section_GmHCY9": {
@@ -631,9 +573,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "contact_block_jWAYy9"
-      ],
+      "block_order": ["contact_block_jWAYy9"],
       "settings": {}
     }
   },
