@@ -1,0 +1,76 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "shopify": {
+    "checkout": {
+      "payment_errors": {
+        "shop_pay_wallet_not_available": "O Shop Pay não está disponível para este checkout.",
+        "market_manager_blocks_wallet_payments": "O método de pagamento não é suportado no seu país."
+      }
+    }
+  },
+  "customer_accounts": {
+    "navigation_and_structure": {
+      "loading_policy_content_accessibility_label": "Carregando conteúdo da política"
+    },
+    "announcement_bar": {
+      "expand_label": "Expandir barra de anúncios",
+      "collapse_label": "Recolher barra de anúncios",
+      "close_label": "Fechar barra de anúncios"
+    }
+  },
+  "404": {
+    "not_found": "Página não encontrada.",
+    "back_to_shopping": "De volta às compras"
+  },
+  "blog": {
+    "article_comments": "Comentários",
+    "comment_form_body": "Comentar",
+    "comment_form_email": "E-mail",
+    "comment_form_name": "Nome",
+    "comment_form_submit": "Publicação",
+    "comment_form_title": "Adicionar um comentário"
+  },
+  "cart": {
+    "checkout": "Confira",
+    "title": "Carrinho",
+    "update": "Atualização",
+    "remove": "Remover"
+  },
+  "customers": {
+    "login": {
+      "email": "E-mail",
+      "password": "Palavra-passe",
+      "submit": "Entrar",
+      "title": "Conecte-se"
+    }
+  },
+  "collections": {
+    "title": "Coleções"
+  },
+  "gift_card": {
+    "add_to_apple_wallet": "Adicionar à Carteira Apple",
+    "card": "Cartão presente",
+    "expired": "Este vale-oferta expirou",
+    "expires_on": "Expira em {{ expires_on }}",
+    "use_at_checkout": "Utilize este vale-presente na finalização da compra"
+  },
+  "password": {
+    "title": "Esta loja é privada",
+    "password": "Palavra-passe",
+    "enter": "Entrar"
+  },
+  "search": {
+    "title": "Pesquisa",
+    "placeholder": "Pesquisar artigos, páginas ou produtos",
+    "submit": "Pesquisa",
+    "no_results_html": "Não foram encontrados resultados para {{ terms }}"
+  }
+}
