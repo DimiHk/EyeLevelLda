@@ -1,27 +1,6 @@
 <div
   class="group {{ block.settings.layout_direction }}{% if block.settings.wrap %} group--wrap{% endif %}"
-  style="
-    background-color: {{ block.settings.background }};
-    justify-content: {{ block.settings.justify }};
-    align-items: {{ block.settings.alignment }};
-    min-height: {{ block.settings.min_height }}px;
-    width: {{ block.settings.width }};
-    height: {{ block.settings.height }};
-    top: {{ block.settings.top }};
-    bottom: {{ block.settings.bottom }};
-    left: {{ block.settings.left }};
-    right: {{ block.settings.right }};
-
-    padding-top: {{ block.settings.padding_top_mobile }};
-    padding-bottom: {{ block.settings.padding_bottom_mobile }};
-    padding-left: {{ block.settings.padding_left_mobile }};
-    padding-right: {{ block.settings.padding_right_mobile }};
-    margin-top: {{ block.settings.margin_top_mobile }};
-    margin-bottom: {{ block.settings.margin_bottom_mobile }};
-    margin-left: {{ block.settings.margin_left_mobile }};
-    margin-right: {{ block.settings.margin_right_mobile }};
-    gap: {{ block.settings.gap_mobile }}px;
-  "
+  style="background-color: {{ block.settings.background }}; width: {{ block.settings.width }}; height: {{ block.settings.height }};"
   {{ block.shopify_attributes }}
 >
   {% content_for 'blocks' %}
@@ -31,29 +10,25 @@
   .group {
     display: flex;
     flex-wrap: nowrap;
-    overflow: hidden;
-    width: 100%;
-    gap: var(--gap-mobile);
-  }
+    justify-content: {{ block.settings.justify }};
+    align-items: {{ block.settings.alignment }};
+    min-height: {{ block.settings.min_height }}px;
 
-  .group--wrap {
-    flex-wrap: wrap;
-  }
-
-  .group--horizontal {
-    flex-direction: row;
-  }
-
-  .group--vertical {
-    flex-direction: column;
+    /* Mobile default values */
+    padding-top: {{ block.settings.padding_top_mobile }};
+    padding-bottom: {{ block.settings.padding_bottom_mobile }};
+    padding-left: {{ block.settings.padding_left_mobile }};
+    padding-right: {{ block.settings.padding_right_mobile }};
+    margin-top: {{ block.settings.margin_top_mobile }};
+    margin-bottom: {{ block.settings.margin_bottom_mobile }};
+    margin-left: {{ block.settings.margin_left_mobile }};
+    margin-right: {{ block.settings.margin_right_mobile }};
+    gap: {{ block.settings.gap_mobile }}px;
   }
 
   @media screen and (min-width: 768px) {
     .group {
-      gap: var(--gap-tablet);
-    }
-
-    .group {
+      /* Tablet values */
       padding-top: {{ block.settings.padding_top_tablet }};
       padding-bottom: {{ block.settings.padding_bottom_tablet }};
       padding-left: {{ block.settings.padding_left_tablet }};
@@ -62,15 +37,13 @@
       margin-bottom: {{ block.settings.margin_bottom_tablet }};
       margin-left: {{ block.settings.margin_left_tablet }};
       margin-right: {{ block.settings.margin_right_tablet }};
+      gap: {{ block.settings.gap_tablet }}px;
     }
   }
 
   @media screen and (min-width: 1024px) {
     .group {
-      gap: var(--gap-desktop);
-    }
-
-    .group {
+      /* Desktop values */
       padding-top: {{ block.settings.padding_top_desktop }};
       padding-bottom: {{ block.settings.padding_bottom_desktop }};
       padding-left: {{ block.settings.padding_left_desktop }};
@@ -79,6 +52,7 @@
       margin-bottom: {{ block.settings.margin_bottom_desktop }};
       margin-left: {{ block.settings.margin_left_desktop }};
       margin-right: {{ block.settings.margin_right_desktop }};
+      gap: {{ block.settings.gap_desktop }}px;
     }
   }
 {% endstyle %}
