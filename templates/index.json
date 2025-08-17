@@ -95,72 +95,22 @@
               "blocks": {}
             }
           },
-          "block_order": ["text_cxEqRw"]
+          "block_order": [
+            "text_cxEqRw"
+          ]
+        },
+        "image_video_GdNCKH": {
+          "type": "image-video",
+          "name": "Custom Media Block",
+          "settings": {},
+          "blocks": {}
         }
       },
-      "block_order": ["bar_GTdRby"],
+      "block_order": [
+        "bar_GTdRby",
+        "image_video_GdNCKH"
+      ],
       "settings": {}
-    },
-    "custom_section_eNJe8L": {
-      "type": "custom-section",
-      "blocks": {
-        "bar_7bTQez": {
-          "type": "bar",
-          "settings": {
-            "layout_direction": "group--horizontal",
-            "alignment": "center",
-            "justify": "center",
-            "wrap": true,
-            "gap_mobile": 8,
-            "gap_tablet": 12,
-            "gap_desktop": 16,
-            "min_height": 0,
-            "background": "transparent",
-            "padding_top_mobile": "0px",
-            "padding_top_tablet": "0px",
-            "padding_top_desktop": "0px",
-            "padding_bottom_mobile": "0px",
-            "padding_bottom_tablet": "0px",
-            "padding_bottom_desktop": "0px",
-            "padding_left_mobile": "0px",
-            "padding_left_tablet": "0px",
-            "padding_left_desktop": "0px",
-            "padding_right_mobile": "0px",
-            "padding_right_tablet": "0px",
-            "padding_right_desktop": "0px",
-            "margin_top_mobile": "0px",
-            "margin_top_tablet": "0px",
-            "margin_top_desktop": "0px",
-            "margin_bottom_mobile": "0px",
-            "margin_bottom_tablet": "0px",
-            "margin_bottom_desktop": "0px",
-            "margin_left_mobile": "0px",
-            "margin_left_tablet": "0px",
-            "margin_left_desktop": "0px",
-            "margin_right_mobile": "0px",
-            "margin_right_tablet": "0px",
-            "margin_right_desktop": "0px",
-            "width": "100%",
-            "height": "auto",
-            "top": "auto",
-            "bottom": "auto",
-            "left": "auto",
-            "right": "auto"
-          },
-          "blocks": {
-            "image_video_iRwBJC": {
-              "type": "image-video",
-              "settings": {},
-              "blocks": {}
-            }
-          },
-          "block_order": ["image_video_iRwBJC"]
-        }
-      },
-      "block_order": ["bar_7bTQez"],
-      "settings": {
-        "background_image": "shopify://shop_images/young-people-having-fun-white-party.jpg"
-      }
     },
     "custom_section_fw38Wh": {
       "type": "custom-section",
@@ -244,7 +194,9 @@
               "blocks": {}
             }
           },
-          "block_order": ["text_4t3fYa"]
+          "block_order": [
+            "text_4t3fYa"
+          ]
         },
         "product_grid_TM7fEX": {
           "type": "product-grid",
@@ -255,7 +207,10 @@
           "blocks": {}
         }
       },
-      "block_order": ["bar_VgfKjy", "product_grid_TM7fEX"],
+      "block_order": [
+        "bar_VgfKjy",
+        "product_grid_TM7fEX"
+      ],
       "settings": {}
     },
     "custom_section_J6KjYK": {
@@ -408,10 +363,16 @@
               "blocks": {}
             }
           },
-          "block_order": ["text_xXkX7a", "text_e6yMFU", "text_QpLMpx"]
+          "block_order": [
+            "text_xXkX7a",
+            "text_e6yMFU",
+            "text_QpLMpx"
+          ]
         }
       },
-      "block_order": ["bar_38ixJJ"],
+      "block_order": [
+        "bar_38ixJJ"
+      ],
       "settings": {}
     },
     "custom_section_4gVwjp": {
@@ -530,10 +491,15 @@
               "blocks": {}
             }
           },
-          "block_order": ["text_mkcxER", "text_WJHFmm"]
+          "block_order": [
+            "text_mkcxER",
+            "text_WJHFmm"
+          ]
         }
       },
-      "block_order": ["bar_3DwbpP"],
+      "block_order": [
+        "bar_3DwbpP"
+      ],
       "settings": {}
     },
     "custom_section_P4Ggrn": {
@@ -545,7 +511,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["before_and_after_eXbbyr"],
+      "block_order": [
+        "before_and_after_eXbbyr"
+      ],
       "settings": {}
     },
     "custom_section_xeAxkR": {
@@ -561,7 +529,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["card_swipper_nc8jkk"],
+      "block_order": [
+        "card_swipper_nc8jkk"
+      ],
       "settings": {}
     },
     "custom_section_GmHCY9": {
@@ -573,14 +543,15 @@
           "blocks": {}
         }
       },
-      "block_order": ["contact_block_jWAYy9"],
+      "block_order": [
+        "contact_block_jWAYy9"
+      ],
       "settings": {}
     }
   },
   "order": [
     "main",
     "custom_section_XzfWzL",
-    "custom_section_eNJe8L",
     "custom_section_fw38Wh",
     "custom_section_J6KjYK",
     "custom_section_4gVwjp",
