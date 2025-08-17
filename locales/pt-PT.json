@@ -72,5 +72,14 @@
     "placeholder": "Pesquisar artigos, páginas ou produtos",
     "submit": "Pesquisa",
     "no_results_html": "Não foram encontrados resultados para {{ terms }}"
+  },
+  "contact": {
+    "title": "Fale Conosco",
+    "success_message": "Obrigado pela sua mensagem! Entraremos em contato em breve.",
+    "full_name": "Nome Completo",
+    "email": "E-mail",
+    "subject": "Assunto",
+    "message": "Mensagem",
+    "send_button": "Enviar"
   }
 }
