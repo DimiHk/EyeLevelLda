@@ -3,10 +3,10 @@
     <div class="sub-header__box__container">
       {% if section.settings['left-box-image'] != blank %}
         <img
-          src="{{ section.settings.left-box-image | image_url: width: 26, height: 10 }}"
+          src="{{ section.settings.left-box-image | image_url: width: 42, height: 10 }}"
           alt="Left Box Image"
           class="box_image"
-          width="26"
+          width="42"
           height="26"
         >
       {% endif %}
@@ -15,10 +15,10 @@
       </span>
       {% if section.settings['right-box-image'] != blank %}
         <img
-          src="{{ section.settings.right-box-image | image_url:  width: 26, height: 10 }}"
+          src="{{ section.settings.right-box-image | image_url:  width: 42, height: 10 }}"
           alt="Right Box Image"
           class="box_image"
-          width="26"
+          width="42"
           height="26"
         >
       {% endif %}
