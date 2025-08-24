@@ -107,7 +107,9 @@
               "blocks": {}
             }
           },
-          "block_order": ["text_4t3fYa"]
+          "block_order": [
+            "text_4t3fYa"
+          ]
         },
         "product_grid_TM7fEX": {
           "type": "product-grid",
@@ -118,7 +120,10 @@
           "blocks": {}
         }
       },
-      "block_order": ["bar_VgfKjy", "product_grid_TM7fEX"],
+      "block_order": [
+        "bar_VgfKjy",
+        "product_grid_TM7fEX"
+      ],
       "settings": {}
     },
     "custom_section_J6KjYK": {
@@ -271,10 +276,16 @@
               "blocks": {}
             }
           },
-          "block_order": ["text_xXkX7a", "text_e6yMFU", "text_QpLMpx"]
+          "block_order": [
+            "text_xXkX7a",
+            "text_e6yMFU",
+            "text_QpLMpx"
+          ]
         }
       },
-      "block_order": ["bar_38ixJJ"],
+      "block_order": [
+        "bar_38ixJJ"
+      ],
       "settings": {}
     },
     "certifications_section": {
@@ -295,17 +306,19 @@
           "blocks": {}
         }
       },
-      "block_order": ["before_and_after_eXbbyr"],
+      "block_order": [
+        "before_and_after_eXbbyr"
+      ],
       "settings": {}
     },
     "card_swiper_section": {
       "type": "card-swiper",
       "settings": {
-        "image_1": "shopify://shop_images/image1.jpg",
-        "image_2": "shopify://shop_images/image2.jpg",
-        "image_3": "shopify://shop_images/image3.jpg",
-        "image_4": "shopify://shop_images/image4.jpg",
-        "image_5": "shopify://shop_images/image5.jpg"
+        "image_1": "shopify://shop_images/portrait-handsome-smiling-stylish-hipster-lambersexual-model.jpg",
+        "image_2": "shopify://shop_images/beauty-woman-portrait-street-outdoor-portrait-fashion-model.jpg",
+        "image_3": "shopify://shop_images/everything-must-be-checked-before-ride.jpg",
+        "image_4": "shopify://shop_images/young-golfer-hitting-shot-with-iron-mature-man-sunglasses-enjoing-professional-game-green-course.jpg",
+        "image_5": "shopify://shop_images/fashion-stylish-beautiful-young-brunette-woman-model-summer-hipster-casual-clothes-posing-street-background-park.jpg"
       }
     },
     "custom_section_GmHCY9": {
@@ -317,7 +330,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["contact_block_jWAYy9"],
+      "block_order": [
+        "contact_block_jWAYy9"
+      ],
       "settings": {}
     }
   },
