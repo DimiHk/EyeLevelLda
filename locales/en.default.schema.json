@@ -43,7 +43,8 @@
     "typography": "Typography",
     "logo": "Logo",
     "language_picker": "Language picker",
-    "bar_group": "Bar Group"
+    "bar_group": "Bar Group",
+    "sub_header": "Sub Header"
   },
   "labels": {
     "alignment": "Alignment",
