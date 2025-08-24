@@ -82,9 +82,9 @@
                 "font_size_mobile": "1.5rem",
                 "font_size_tablet": "2rem",
                 "font_size_desktop": "2rem",
-                "font_weight_mobile": "500",
-                "font_weight_tablet": "500",
-                "font_weight_desktop": "500",
+                "font_weight_mobile": "400",
+                "font_weight_tablet": "400",
+                "font_weight_desktop": "400",
                 "color_mobile": "rgba(0, 0, 0, 0.75)",
                 "color_tablet": "rgba(0, 0, 0, 0.75)",
                 "color_desktop": "rgba(0, 0, 0, 0.75)",
@@ -288,6 +288,15 @@
       ],
       "settings": {}
     },
+    "certifications_section": {
+      "type": "certifications",
+      "settings": {
+        "header-text": "Certifications",
+        "info_text_1": "Eyelevel UN Sunglasses provide comfort in very bright conditions due to our UV400 break resistant lenses which offer maximum protection from harmful UVA and UVB rays.",
+        "info_text_2": "All our products are rigorously tested and certified to meet international standards, including CE, FDA, DBT, UV400, and Cat.3 compliance, ensuring top-tier quality and safety for your customers.",
+        "info_text_3": "Standard EN ISO 12312-1:2013 and American standard ANSI Z80.3."
+      }
+    },
     "custom_section_P4Ggrn": {
       "type": "custom-section",
       "blocks": {
@@ -332,10 +341,6 @@
       "block_order": [
         "contact_block_jWAYy9"
       ],
-      "settings": {}
-    },
-    "certifications_section": {
-      "type": "certifications",
       "settings": {}
     }
   },
