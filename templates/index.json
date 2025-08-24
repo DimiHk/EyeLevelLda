@@ -15,7 +15,15 @@
     },
     "sub_header_section": {
       "type": "sub-header",
-      "settings": {}
+      "settings": {
+        "left-box-image": "shopify://shop_images/left_side.png",
+        "box-text": "Look Sharp. Move Bold. Discover the Polarized Collection",
+        "right-box-image": "shopify://shop_images/right_side.png",
+        "info-image": "shopify://shop_images/image_12-04-11-1_12-20-17-21-35.jpg",
+        "info_text_1": "Our polarized sunglasses have the added benefit of eliminating harsh glare reflected off surfaces.",
+        "info_text_2": "Eyelevel’s Un genuine polarized lenses contain a special filter, which blocks intense rays of reflected light that reduce visibility. Images appear sharper and clearer, while optimum safety is ensured. In addition, they allow you to see below the surface of the water, essential for fishing or sailing...",
+        "info_text_3": "Polarized sunglasses are excellent for golf because they stop light glare hitting you directly in the eye. This helps when looking into the sun, as you are less likely to lose track of your golf ball in flight after making your swing."
+      }
     },
     "custom_section_fw38Wh": {
       "type": "custom-section",
