@@ -1,0 +1,90 @@
+<section class="certifications__container">
+  <span class="certifications__box-text">
+    {{ section.settings['header-text'] }}
+  </span>
+  <div class="certifications__info-text">
+    {% for i in (1..5) %}
+      {% capture key %}info_text_{{ i }}{% endcapture %}
+      {% assign text_item = section.settings[key] %}
+      {% if text_item != blank %}
+        <p>{{ text_item | newline_to_br }}</p>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .certifications__container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 80%;
+    gap: 2rem;
+  }
+
+  .certifications__box-text {
+    color: #333;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .certifications__info-text p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 300;
+    line-height: 1.75;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  @media (min-width: 1200px) {
+    .certifications__info_container {
+      width: 50%;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Certifications",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header-text",
+      "label": "Header text",
+      "default": "Certifications"
+    },
+    {
+      "type": "textarea",
+      "id": "info_text_1",
+      "label": "Info Text 1",
+      "default": "Eyelevel UN Sunglasses provide comfort in very bright conditions due to our UV400 break resistant lenses which offer maximum protection from harmful UVA and UVB rays."
+    },
+    {
+      "type": "textarea",
+      "id": "info_text_2",
+      "label": "Info Text 2",
+      "default": "All our products are rigorously tested and certified to meet international standards, including CE, FDA, DBT, UV400, and Cat.3 compliance, ensuring top-tier quality and safety for your customers."
+    },
+    {
+      "type": "textarea",
+      "id": "info_text_3",
+      "label": "Info Text 3",
+      "default": "Standard EN ISO 12312-1:2013 and American standard ANSI Z80.3."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Certifications"
+    }
+  ]
+}
+{% endschema %}

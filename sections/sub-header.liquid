@@ -3,8 +3,9 @@
     <div class="sub-header__box__container">
       {% if section.settings['left-box-image'] != blank %}
         <img
-          src="{{ section.settings.left-box-image | image_url: width: 26 }}"
+          src="{{ section.settings.left-box-image | image_url: width: 26, height: 10 }}"
           alt="Left Box Image"
+          class="box_image"
           width="26"
           height="26"
         >
@@ -14,8 +15,9 @@
       </span>
       {% if section.settings['right-box-image'] != blank %}
         <img
-          src="{{ section.settings.right-box-image | image_url: width: 26 }}"
+          src="{{ section.settings.right-box-image | image_url:  width: 26, height: 10 }}"
           alt="Right Box Image"
+          class="box_image"
           width="26"
           height="26"
         >
@@ -24,10 +26,10 @@
     <div class="sub-header__info_container">
       {% if section.settings['info-image'] != blank %}
         <img
-          src="{{ section.settings.info-image | image_url: width: 200 }}"
+          src="{{ section.settings.info-image | image_url: width: 400 }}"
           alt="Info Image"
-          width="200"
-          height="200"
+          width="400"
+          height="400"
         >
       {% endif %}
       <div class="sub-header__info-text">
@@ -50,31 +52,39 @@
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    gap: 0.5rem;
+    gap: 1rem;
+  }
+
+  .box_image {
+    padding-top: 3.5px;
   }
 
   .sub-header__box-text {
     color: #fff;
-    font-size: 0.875rem;
+    font-size: 1rem;
     text-align: center;
+    font-weight: 300;
   }
 
   .sub-header__info_container {
+    padding-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: auto;
     width: 80%;
+    gap: 2rem;
   }
 
   .sub-header__info-text p {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.875rem;
+    font-size: 1.5rem;
     color: #333;
-    line-height: 2;
+    font-weight: 300;
+    line-height: 1.75;
     text-align: center;
     padding: 1rem;
   }

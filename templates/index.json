@@ -288,133 +288,6 @@
       ],
       "settings": {}
     },
-    "custom_section_4gVwjp": {
-      "type": "custom-section",
-      "blocks": {
-        "bar_3DwbpP": {
-          "type": "bar",
-          "settings": {
-            "layout_direction": "group--vertical",
-            "alignment": "center",
-            "justify": "center",
-            "wrap": false,
-            "gap_mobile": 20,
-            "gap_tablet": 20,
-            "gap_desktop": 20,
-            "min_height": 0,
-            "background": "#ffffff",
-            "padding_top_mobile": "40px",
-            "padding_top_tablet": "40px",
-            "padding_top_desktop": "40px",
-            "padding_bottom_mobile": "40px",
-            "padding_bottom_tablet": "40px",
-            "padding_bottom_desktop": "0px",
-            "padding_left_mobile": "0px",
-            "padding_left_tablet": "0px",
-            "padding_left_desktop": "0px",
-            "padding_right_mobile": "0px",
-            "padding_right_tablet": "0px",
-            "padding_right_desktop": "0px",
-            "margin_top_mobile": "0px",
-            "margin_top_tablet": "0px",
-            "margin_top_desktop": "0px",
-            "margin_bottom_mobile": "0px",
-            "margin_bottom_tablet": "0px",
-            "margin_bottom_desktop": "0px",
-            "margin_left_mobile": "0px",
-            "margin_left_tablet": "0px",
-            "margin_left_desktop": "0px",
-            "margin_right_mobile": "0px",
-            "margin_right_tablet": "0px",
-            "margin_right_desktop": "0px",
-            "width": "100%",
-            "height": "auto",
-            "top": "auto",
-            "bottom": "auto",
-            "left": "auto",
-            "right": "auto"
-          },
-          "blocks": {
-            "text_mkcxER": {
-              "type": "text",
-              "settings": {
-                "text": "Certifications",
-                "alignment_mobile": "center",
-                "alignment_tablet": "center",
-                "alignment_desktop": "center",
-                "font_size_mobile": "1.275rem",
-                "font_size_tablet": "2rem",
-                "font_size_desktop": "2rem",
-                "font_weight_mobile": "500",
-                "font_weight_tablet": "500",
-                "font_weight_desktop": "500",
-                "color_mobile": "rgba(0, 0, 0, 0.75)",
-                "color_tablet": "rgba(0, 0, 0, 0.75)",
-                "color_desktop": "rgba(0, 0, 0, 0.75)",
-                "line_height_mobile": "1.5",
-                "line_height_tablet": "1.5",
-                "line_height_desktop": "1.5",
-                "letter_spacing_mobile": "normal",
-                "letter_spacing_tablet": "normal",
-                "letter_spacing_desktop": "normal",
-                "text_transform_mobile": "none",
-                "text_transform_tablet": "none",
-                "text_transform_desktop": "none",
-                "padding_mobile": "0",
-                "padding_tablet": "0",
-                "padding_desktop": "0",
-                "margin_mobile": "0",
-                "margin_tablet": "0",
-                "margin_desktop": "0"
-              },
-              "blocks": {}
-            },
-            "text_WJHFmm": {
-              "type": "text",
-              "settings": {
-                "text": "Polarized sunglasses are specially designed to reduce glare from surfaces like water, roads, and glass. Unlike regular sunglasses, they have a special filter that blocks intense reflected light, making them perfect for driving, outdoor activities, or days at the beach.",
-                "alignment_mobile": "center",
-                "alignment_tablet": "center",
-                "alignment_desktop": "center",
-                "font_size_mobile": "1rem",
-                "font_size_tablet": "1.5rem",
-                "font_size_desktop": "1.5rem",
-                "font_weight_mobile": "300",
-                "font_weight_tablet": "300",
-                "font_weight_desktop": "300",
-                "color_mobile": "rgba(0, 0, 0, 0.70)",
-                "color_tablet": "rgba(0, 0, 0, 0.70)",
-                "color_desktop": "rgba(0, 0, 0, 0.70)",
-                "line_height_mobile": "44px",
-                "line_height_tablet": "44px",
-                "line_height_desktop": "44px",
-                "letter_spacing_mobile": "normal",
-                "letter_spacing_tablet": "normal",
-                "letter_spacing_desktop": "normal",
-                "text_transform_mobile": "none",
-                "text_transform_tablet": "none",
-                "text_transform_desktop": "none",
-                "padding_mobile": "0",
-                "padding_tablet": "0",
-                "padding_desktop": "0",
-                "margin_mobile": "0",
-                "margin_tablet": "0",
-                "margin_desktop": "0"
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_mkcxER",
-            "text_WJHFmm"
-          ]
-        }
-      },
-      "block_order": [
-        "bar_3DwbpP"
-      ],
-      "settings": {}
-    },
     "custom_section_P4Ggrn": {
       "type": "custom-section",
       "blocks": {
@@ -460,6 +333,10 @@
         "contact_block_jWAYy9"
       ],
       "settings": {}
+    },
+    "certifications_section": {
+      "type": "certifications",
+      "settings": {}
     }
   },
   "order": [
@@ -467,7 +344,7 @@
     "sub_header_section",
     "custom_section_fw38Wh",
     "custom_section_J6KjYK",
-    "custom_section_4gVwjp",
+    "certifications_section",
     "custom_section_P4Ggrn",
     "custom_section_xeAxkR",
     "custom_section_GmHCY9"
