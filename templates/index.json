@@ -63,7 +63,7 @@
             "text_cxEqRw": {
               "type": "text",
               "settings": {
-                "text": "⚡ Look Sharp. Move Bold. Discover the Polarized Collection ⚡",
+                "text": "Look Sharp. Move Bold. Discover the Polarized Collection",
                 "alignment_mobile": "center",
                 "alignment_tablet": "center",
                 "alignment_desktop": "center",
@@ -98,17 +98,10 @@
           "block_order": [
             "text_cxEqRw"
           ]
-        },
-        "image_video_GdNCKH": {
-          "type": "image-video",
-          "name": "Custom Media Block",
-          "settings": {},
-          "blocks": {}
         }
       },
       "block_order": [
-        "bar_GTdRby",
-        "image_video_GdNCKH"
+        "bar_GTdRby"
       ],
       "settings": {}
     },
@@ -425,7 +418,7 @@
             "text_mkcxER": {
               "type": "text",
               "settings": {
-                "text": "Diferences & Definition",
+                "text": "Certifications",
                 "alignment_mobile": "center",
                 "alignment_tablet": "center",
                 "alignment_desktop": "center",

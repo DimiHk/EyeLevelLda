@@ -14,16 +14,6 @@
     "header": {
       "type": "header",
       "blocks": {
-        "logo_Jm7LbC": {
-          "type": "logo",
-          "name": "t:general.logo_image",
-          "settings": {
-            "image": "shopify://shop_images/logo.png",
-            "logo_width_desktop": 180,
-            "logo_width_mobile": 140
-          },
-          "blocks": {}
-        },
         "language_picker_B7Jh6x": {
           "type": "language-picker",
           "name": "t:general.language_picker",
@@ -32,7 +22,6 @@
         }
       },
       "block_order": [
-        "logo_Jm7LbC",
         "language_picker_B7Jh6x"
       ],
       "settings": {}
