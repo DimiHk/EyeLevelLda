@@ -1,0 +1,152 @@
+<div class="swiper marquee-slider">
+  <span class="swiper-notification"></span>
+  <div class="swiper-wrapper">
+    {% if section.settings.image_1 %}
+      <div class="swiper-slide">
+        <div class="card-slide">
+          <img src="{{ section.settings.image_1 }}" alt="Image 1">
+        </div>
+      </div>
+    {% endif %}
+    {% if section.settings.image_2 %}
+      <div class="swiper-slide">
+        <div class="card-slide">
+          <img src="{{ section.settings.image_2 }}" alt="Image 2">
+        </div>
+      </div>
+    {% endif %}
+    {% if section.settings.image_3 %}
+      <div class="swiper-slide">
+        <div class="card-slide">
+          <img src="{{ section.settings.image_3 }}" alt="Image 3">
+        </div>
+      </div>
+    {% endif %}
+    {% if section.settings.image_4 %}
+      <div class="swiper-slide">
+        <div class="card-slide">
+          <img src="{{ section.settings.image_4 }}" alt="Image 4">
+        </div>
+      </div>
+    {% endif %}
+    {% if section.settings.image_5 %}
+      <div class="swiper-slide">
+        <div class="card-slide">
+          <img src="{{ section.settings.image_5 }}" alt="Image 5">
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .marquee-slider {
+    padding-top: 50px;
+    width: 100%;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .marquee-slider .swiper-slide {
+    width: 520px; /* Match card width */
+    flex-shrink: 0;
+    padding: 0px;
+  }
+
+  .marquee-slider .card-slide {
+    width: 100%; /* Square dimensions */
+    height: 350px; /* Square dimensions */
+    overflow: hidden;
+  }
+
+  .marquee-slider .card-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* Ensure responsiveness on small screens */
+  @media (max-width: 460px) {
+    .marquee-slider .swiper-slide {
+      width: 200px; /* Match card width */
+    }
+
+    .marquee-slider .card-slide {
+      width: 200px; /* Square dimensions */
+      height: 200px; /* Square dimensions */
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof Swiper === 'undefined') {
+      console.error('Swiper library is not loaded. Please include the Swiper JS file.');
+      return;
+    }
+
+    const slider = document.querySelector('.marquee-slider');
+    if (!slider) {
+      console.error('Marquee slider element not found.');
+      return;
+    }
+
+    try {
+      const swiper = new Swiper('.marquee-slider', {
+        slidesPerView: 'auto',
+        spaceBetween: 0,
+        loop: true,
+        speed: 2000,
+        autoplay: {
+          delay: 100,
+          disableOnInteraction: true,
+        },
+      });
+      console.log('Swiper initialized:', swiper);
+    } catch (error) {
+      console.error('Error initializing Swiper:', error);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Multi Card Swiper",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi Card Swiper"
+    }
+  ]
+}
+{% endschema %}

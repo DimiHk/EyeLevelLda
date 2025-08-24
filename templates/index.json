@@ -107,9 +107,7 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "text_4t3fYa"
-          ]
+          "block_order": ["text_4t3fYa"]
         },
         "product_grid_TM7fEX": {
           "type": "product-grid",
@@ -120,10 +118,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "bar_VgfKjy",
-        "product_grid_TM7fEX"
-      ],
+      "block_order": ["bar_VgfKjy", "product_grid_TM7fEX"],
       "settings": {}
     },
     "custom_section_J6KjYK": {
@@ -276,16 +271,10 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "text_xXkX7a",
-            "text_e6yMFU",
-            "text_QpLMpx"
-          ]
+          "block_order": ["text_xXkX7a", "text_e6yMFU", "text_QpLMpx"]
         }
       },
-      "block_order": [
-        "bar_38ixJJ"
-      ],
+      "block_order": ["bar_38ixJJ"],
       "settings": {}
     },
     "certifications_section": {
@@ -306,28 +295,18 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "before_and_after_eXbbyr"
-      ],
+      "block_order": ["before_and_after_eXbbyr"],
       "settings": {}
     },
-    "custom_section_xeAxkR": {
-      "type": "custom-section",
-      "blocks": {
-        "card_swipper_nc8jkk": {
-          "type": "card-swipper",
-          "settings": {
-            "image_1": "shopify://shop_images/portugal.jpg",
-            "image_2": "shopify://shop_images/portugal.jpg",
-            "image_3": "shopify://shop_images/portugal.jpg"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "card_swipper_nc8jkk"
-      ],
-      "settings": {}
+    "card_swiper_section": {
+      "type": "card-swiper",
+      "settings": {
+        "image_1": "shopify://shop_images/image1.jpg",
+        "image_2": "shopify://shop_images/image2.jpg",
+        "image_3": "shopify://shop_images/image3.jpg",
+        "image_4": "shopify://shop_images/image4.jpg",
+        "image_5": "shopify://shop_images/image5.jpg"
+      }
     },
     "custom_section_GmHCY9": {
       "type": "custom-section",
@@ -338,9 +317,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "contact_block_jWAYy9"
-      ],
+      "block_order": ["contact_block_jWAYy9"],
       "settings": {}
     }
   },
@@ -351,7 +328,7 @@
     "custom_section_J6KjYK",
     "certifications_section",
     "custom_section_P4Ggrn",
-    "custom_section_xeAxkR",
+    "card_swiper_section",
     "custom_section_GmHCY9"
   ]
 }
