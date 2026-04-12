@@ -1,1 +1,195 @@
-<section class="sub-header"> <div class="sub-header__container"> <div class="sub-header__box__container"> {% if section.settings['left-box-image'] != blank %} <img src="{{ section.settings.left-box-image | image_url: width: 42, height: 10 }}" alt="Left Box Image" class="box_image" width="42" height="26" > {% endif %} <span class="sub-header__box-text"> {{ section.settings['box-text'] }} </span> {% if section.settings['right-box-image'] != blank %} <img src="{{ section.settings.right-box-image | image_url: width: 42, height: 10 }}" alt="Right Box Image" class="box_image" width="42" height="26" > {% endif %} </div> <div class="sub-header__info_container"> <p class="vladimir-font">Eyelevel Un</p> <div class="sub-header__info-text"> {% for i in (1..5) %} {% capture key %}info_text_{{ i }}{% endcapture %} {% assign text_item = section.settings[key] %} {% if text_item != blank %} <p>{{ text_item | newline_to_br }}</p> {% endif %} {% endfor %} </div> </div> </div> </section> {% stylesheet %} .sub-header__box__container { display: flex; background-color: rgba(0, 0, 0, 0.8); align-items: center; justify-content: center; padding: 1rem; gap: 1rem; } .sub-header__box-text { color: #fff; font-size: 0.875rem; text-align: center; font-weight: 300; } .sub-header__info_container { padding-top: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: auto; width: 80%; gap: 2rem; } .sub-header__info-text p { display: flex; justify-content: center; align-items: center; font-size: 0.875rem; color: #333; font-weight: 500; line-height: 1.75; text-align: center; padding: 1rem; } @font-face { font-family: 'Vladimir'; src: url('https://cdn.shopify.com/s/files/1/0920/9806/8863/files/Vladimir.woff2?v=1756055955') format('woff2'); } .vladimir-font { position: relative; font-family: 'Vladimir', cursive; font-size: 2.5rem; padding: 0.5rem; background-color: #333; color: #fff; } .vladimir-font::before, .vladimir-font::after { content: ''; position: absolute; left: 0; right: 0; height: 4px; border-radius: 10px; } .vladimir-font::before { top: 0; background: #e4ca2b; } .vladimir-font::after { bottom: 0; background: #09b8e0; } @media (min-width: 1200px) { .sub-header__info_container { width: 50%; } .vladimir-font { font-size: 4rem; } } {% endstylesheet %} {% schema %} { "name": "Sub Header", "settings": [ { "type": "image_picker", "id": "left-box-image", "label": "Left Box Image" }, { "type": "text", "id": "box-text", "label": "Box Text", "default": "Look Sharp. Move Bold. Discover the Polarized Collection" }, { "type": "image_picker", "id": "right-box-image", "label": "Right Box Image" }, { "type": "image_picker", "id": "info-image", "label": "Info Image" }, { "type": "textarea", "id": "info_text_1", "label": "Info Text 1", "default": "Our polarized sunglasses have the added benefit of eliminating harsh glare reflected off surfaces." }, { "type": "textarea", "id": "info_text_2", "label": "Info Text 2", "default": "Eyelevel’s Un genuine polarized lenses contain a special filter, which blocks intense rays of reflected light that reduce visibility. Images appear sharper and clearer, while optimum safety is ensured. In addition, they allow you to see below the surface of the water, essential for fishing or sailing..." }, { "type": "textarea", "id": "info_text_3", "label": "Info Text 3", "default": "Polarized sunglasses are excellent for golf because they stop light glare hitting you directly in the eye. This helps when looking into the sun, as you are less likely to lose track of your golf ball in flight after making your swing." } ], "presets": [ { "name": "Sub Header" } ] } {% endschema %}
+<section class="sub-header">
+  <div class="sub-header__container">
+    <div class="sub-header__box__container">
+      {% if section.settings['left-box-image'] != blank %}
+        <img
+          src="{{ section.settings.left-box-image | image_url: width: 42, height: 10 }}"
+          alt="Left Box Image"
+          class="box_image"
+          width="42"
+          height="26"
+        >
+      {% endif %}
+      <span class="sub-header__box-text">
+        {{ section.settings['box-text'] }}
+      </span>
+      {% if section.settings['right-box-image'] != blank %}
+        <img
+          src="{{ section.settings.right-box-image | image_url:  width: 42, height: 10 }}"
+          alt="Right Box Image"
+          class="box_image"
+          width="42"
+          height="26"
+        >
+      {% endif %}
+      <div class="sub-header__info_container">
+          </div>
+      {% if section.settings['logo-image'] != blank %}
+      <img
+        src="{{ section.settings.logo-image | image_url }}"
+        alt="Eyelevel Un Logo"
+        class="sub-header__logo"
+      >
+    {% endif %}
+         <div class="sub-header__info-text">
+           {% for i in (1..5) %}
+             {% capture key %}info_text_{{ i }}{% endcapture %}
+              {% assign text_item = section.settings[key] %}
+               {% if text_item != blank %}
+                 <p>{{ text_item | newline_to_br }}</p> 
+                {% endif %}
+               {% endfor %}
+               </div>
+               </div>
+               </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .sub-header__box__container {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .sub-header__box-text {
+    color: #fff;
+    font-size: 0.875rem;
+    text-align: center;
+    font-weight: 300;
+  }
+
+  .sub-header__info_container {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 80%;
+    gap: 2rem;
+  }
+
+  .sub-header__info-text p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #333;
+    font-weight: 500;
+    line-height: 1.75;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  @font-face {
+    font-family: 'Vladimir';
+    src: url('https://cdn.shopify.com/s/files/1/0920/9806/8863/files/Vladimir.woff2?v=1756055955') format('woff2');
+  }
+
+  .sub-header__logo {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .vladimir-font {
+    position: relative;
+    font-family: 'Vladimir', cursive;
+    font-size: 2.5rem;
+    padding: 0.5rem;
+    background-color: #333;
+    color: #fff;
+  }
+
+  .vladimir-font::before,
+  .vladimir-font::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: 10px;
+  }
+
+  .vladimir-font::before {
+    top: 0;
+    background: #e4ca2b;
+  }
+
+  .vladimir-font::after {
+    bottom: 0;
+    background: #09b8e0;
+  }
+
+  @media (min-width: 1200px) {
+    .sub-header__info_container {
+      width: 50%;
+    }
+    .vladimir-font {
+      font-size: 4rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sub Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "left-box-image",
+      "label": "Left Box Image"
+    },
+    {
+      "type": "text",
+      "id": "box-text",
+      "label": "Box Text",
+      "default": "Look Sharp. Move Bold. Discover the Polarized Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "right-box-image",
+      "label": "Right Box Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "info-image",
+      "label": "Info Image"
+    },
+    {
+      "type": "textarea",
+      "id": "info_text_1",
+      "label": "Info Text 1",
+      "default": "Our polarized sunglasses have the added benefit of eliminating harsh glare reflected off surfaces."
+    },
+    {
+      "type": "textarea",
+      "id": "info_text_2",
+      "label": "Info Text 2",
+      "default": "Eyelevel’s Un genuine polarized lenses contain a special filter, which blocks intense rays of reflected light that reduce visibility. Images appear sharper and clearer, while optimum safety is ensured. In addition, they allow you to see below the surface of the water, essential for fishing or sailing..."
+    },
+    {
+      "type": "textarea",
+      "id": "info_text_3",
+      "label": "Info Text 3",
+      "default": "Polarized sunglasses are excellent for golf because they stop light glare hitting you directly in the eye. This helps when looking into the sun, as you are less likely to lose track of your golf ball in flight after making your swing."
+    },
+    {
+    "type": "image_picker",
+    "id": "logo-image",
+    "label": "Logo Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sub Header"
+    }
+  ]
+}
+{% endschema %}
