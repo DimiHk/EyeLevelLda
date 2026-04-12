@@ -28,7 +28,13 @@
     </div>
 
     <div class="sub-header__info_container">
-
+      {% if section.settings['logo-image'] != blank %}
+        <img
+          src="{{ section.settings.logo-image | image_url }}"
+          alt="Eyelevel Un Logo"
+          class="sub-header__logo"
+        >
+      {% endif %}
       <div class="sub-header__info-text">
         {% for i in (1..5) %}
           {% capture key %}info_text_{{ i }}{% endcapture %}
@@ -59,6 +65,14 @@
   font-size: 0.875rem;
   text-align: center;
   font-weight: 300;
+}
+
+.sub-header__logo {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .sub-header__info_container {
@@ -171,6 +185,11 @@
       "id": "info_text_3",
       "label": "Info Text 3",
       "default": "Polarized sunglasses are excellent for golf because they stop light glare hitting you directly in the eye. This helps when looking into the sun, as you are less likely to lose track of your golf ball in flight after making your swing."
+    },
+    {
+    "type": "image_picker",
+    "id": "logo-image",
+    "label": "Logo Image"
     }
   ],
   "presets": [
